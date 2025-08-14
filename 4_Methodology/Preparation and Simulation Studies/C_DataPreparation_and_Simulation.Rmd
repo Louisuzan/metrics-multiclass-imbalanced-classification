@@ -1,0 +1,130 @@
+<!-- Data preparation simulation study C -->
+
+```{r C: load packages, echo = F}
+library("tidyr")
+```
+
+```{r C: set up, echo = F}
+source('./Functions.R')
+options(scipen = 999)
+set.seed(5)
+```
+
+```{r C: Preparation sim c: Define MISCL, tidy = FALSE, echo = F}
+# Simulation C
+
+# Misclassification type (MISCL): 
+# Complete (100%) misclassification of the majority class
+Maj100 <- c(1, 0, 0, 1,
+            0, 1, 0, 0,
+            0, 0, 1, 0,
+            0, 0, 0, 0) # 1 = 100%
+Maj100 <- matrix(Maj100, 4, 4, byrow = T) # Vector to matrix
+
+# Partial (50%) misclassification of the majority class
+Maj50 <- c(1, 0, 0, .5,
+           0, 1, 0,  0,
+           0, 0, 1,  0,
+           0, 0, 0, .5) # .5 = 50%
+Maj50 <- matrix(Maj50, 4, 4, byrow = T) 
+```
+
+```{r C: Generate probability matrices, tidy = FALSE, echo = F}
+# Generating probability matrices based on imbalance, the number of minority
+# classes and type of misclassification 
+# p*_*_* = probabilities_nMIN_IR_MISCL
+# PM is formulated in Functions.R
+
+p1_1_1   <- PM(IR = 1.2, nMIN = 1, MISCL = Maj100) 
+p2_1_1   <- PM(IR = 1.2, nMIN = 2, MISCL = Maj100)
+p3_1_1   <- PM(IR = 1.2, nMIN = 3, MISCL = Maj100)
+p1_3_1   <- PM(IR = 3,   nMIN = 1, MISCL = Maj100)
+p2_3_1   <- PM(IR = 3,   nMIN = 2, MISCL = Maj100)
+p3_3_1   <- PM(IR = 3,   nMIN = 3, MISCL = Maj100)
+p1_30_1  <- PM(IR = 30,  nMIN = 1, MISCL = Maj100)
+p2_30_1  <- PM(IR = 30,  nMIN = 2, MISCL = Maj100)
+p3_30_1  <- PM(IR = 30,  nMIN = 3, MISCL = Maj100)
+p1_300_1 <- PM(IR = 300, nMIN = 1, MISCL = Maj100)
+p2_300_1 <- PM(IR = 300, nMIN = 2, MISCL = Maj100)
+p3_300_1 <- PM(IR = 300, nMIN = 3, MISCL = Maj100)
+
+p1_1_2   <- PM(IR = 1.2, nMIN = 1, MISCL = Maj50)
+p2_1_2   <- PM(IR = 1.2, nMIN = 2, MISCL = Maj50)
+p3_1_2   <- PM(IR = 1.2, nMIN = 3, MISCL = Maj50)
+p1_3_2   <- PM(IR = 3,   nMIN = 1, MISCL = Maj50)
+p2_3_2   <- PM(IR = 3,   nMIN = 2, MISCL = Maj50)
+p3_3_2   <- PM(IR = 3,   nMIN = 3, MISCL = Maj50)
+p1_30_2  <- PM(IR = 30,  nMIN = 1, MISCL = Maj50)
+p2_30_2  <- PM(IR = 30,  nMIN = 2, MISCL = Maj50)
+p3_30_2  <- PM(IR = 30,  nMIN = 3, MISCL = Maj50)
+p1_300_2 <- PM(IR = 300, nMIN = 1, MISCL = Maj50)
+p2_300_2 <- PM(IR = 300, nMIN = 2, MISCL = Maj50)
+p3_300_2 <- PM(IR = 300, nMIN = 3, MISCL = Maj50)
+```
+
+```{r C: Simulation confusion matrices, echo = F, message = F, warning = F}
+# Simulating (S) confusion matrices based on probabilities (PM), imbalance (IR), 
+# number of minority classes (nMIN), the type of misclassifications (MISCL),
+# the number of observations (n = 500.000) and the number of repetitions (nrep = 100).
+# m*_*_*_* metrics_nMIN_IR_MISCL_n
+# Simulation function S() is formulated in Functions.R
+
+# Classifier 1: Complete misclassification of the majority class (Maj100) 
+m1_1_1_500000   <- cbind(nMIN = 1, IR = "1:1.2", MISCL = "Maj100", n = 500000, S(500000, p1_1_1, 100))
+m1_3_1_500000   <- cbind(nMIN = 1, IR = "1:3",   MISCL = "Maj100", n = 500000, S(500000, p1_3_1, 100))
+m1_30_1_500000  <- cbind(nMIN = 1, IR = "1:30",  MISCL = "Maj100", n = 500000, S(500000, p1_30_1, 100))
+m1_300_1_500000 <- cbind(nMIN = 1, IR = "1:300", MISCL = "Maj100", n = 500000, S(500000, p1_300_1, 100))
+m2_1_1_500000   <- cbind(nMIN = 2, IR = "1:1.2", MISCL = "Maj100", n = 500000, S(500000, p2_1_1, 100))
+m2_3_1_500000   <- cbind(nMIN = 2, IR = "1:3",   MISCL = "Maj100", n = 500000, S(500000, p2_3_1, 100))
+m2_30_1_500000  <- cbind(nMIN = 2, IR = "1:30",  MISCL = "Maj100", n = 500000, S(500000, p2_30_1, 100))
+m2_300_1_500000 <- cbind(nMIN = 2, IR = "1:300", MISCL = "Maj100", n = 500000, S(500000, p2_300_1, 100))
+m3_1_1_500000   <- cbind(nMIN = 3, IR = "1:1.2", MISCL = "Maj100", n = 500000, S(500000, p3_1_1, 100))
+m3_3_1_500000   <- cbind(nMIN = 3, IR = "1:3",   MISCL = "Maj100", n = 500000, S(500000, p3_3_1, 100))
+m3_30_1_500000  <- cbind(nMIN = 3, IR = "1:30",  MISCL = "Maj100", n = 500000, S(500000, p3_30_1, 100))
+m3_300_1_500000 <- cbind(nMIN = 3, IR = "1:300", MISCL = "Maj100", n = 500000, S(500000, p3_300_1, 100))
+
+# Classifier 2: Partial misclassification of the majority class (Maj50)
+m1_1_2_500000   <- cbind(nMIN = 1, IR = "1:1.2", MISCL = "Maj50", n = 500000, S(500000, p1_1_2, 100))
+m1_3_2_500000   <- cbind(nMIN = 1, IR = "1:3",   MISCL = "Maj50", n = 500000, S(500000, p1_3_2, 100))
+m1_30_2_500000  <- cbind(nMIN = 1, IR = "1:30",  MISCL = "Maj50", n = 500000, S(500000, p1_30_2, 100))
+m1_300_2_500000 <- cbind(nMIN = 1, IR = "1:300", MISCL = "Maj50", n = 500000, S(500000, p1_300_2, 100))
+m2_1_2_500000   <- cbind(nMIN = 2, IR = "1:1.2", MISCL = "Maj50", n = 500000, S(500000, p2_1_2, 100))
+m2_3_2_500000   <- cbind(nMIN = 2, IR = "1:3",   MISCL = "Maj50", n = 500000, S(500000, p2_3_2, 100))
+m2_30_2_500000  <- cbind(nMIN = 2, IR = "1:30",  MISCL = "Maj50", n = 500000, S(500000, p2_30_2, 100))
+m2_300_2_500000 <- cbind(nMIN = 2, IR = "1:300", MISCL = "Maj50", n = 500000, S(500000, p2_300_2, 100))
+m3_1_2_500000   <- cbind(nMIN = 3, IR = "1:1.2", MISCL = "Maj50", n = 500000, S(500000, p3_1_2, 100))
+m3_3_2_500000   <- cbind(nMIN = 3, IR = "1:3",   MISCL = "Maj50", n = 500000, S(500000, p3_3_2, 100))
+m3_30_2_500000  <- cbind(nMIN = 3, IR = "1:30",  MISCL = "Maj50", n = 500000, S(500000, p3_30_2, 100))
+m3_300_2_500000 <- cbind(nMIN = 3, IR = "1:300", MISCL = "Maj50", n = 500000, S(500000, p3_300_2, 100))
+```
+
+```{r C: Combine into one dataframe, tidy = FALSE, echo = F}
+# Combining all simulations into one dataframe.
+data <- rbind(
+  # Classifier 1: complete misclassification of the majority class
+  m1_1_1_500000, m1_3_1_500000, m1_30_1_500000, m1_300_1_500000,
+  m2_1_1_500000, m2_3_1_500000, m2_30_1_500000, m2_300_1_500000,
+  m3_1_1_500000, m3_3_1_500000, m3_30_1_500000, m3_300_1_500000,
+  # Classifier 2: partial misclassification of the majority class
+  m1_1_2_500000, m1_3_2_500000, m1_30_2_500000, m1_300_2_500000,
+  m2_1_2_500000, m2_3_2_500000, m2_30_2_500000, m2_300_2_500000,
+  m3_1_2_500000, m3_3_2_500000, m3_30_2_500000, m3_300_2_500000
+  ) # End rbind()
+
+data$IR    <- factor(data$IR)
+data$n     <- factor(data$n)
+data$nMIN  <- factor(data$nMIN)
+data$MISCL <- factor(data$MISCL)
+```
+
+```{r C: wide to long format, echo = F}
+# From wide to long format 
+dataC     <- data
+dataC$row <- factor(rownames(dataC)) 
+dataC     <- tidyr::gather(dataC, METRIC, y, Accuracy:MCC.cb, factor_key = TRUE)
+```
+
+```{r C: save & clear workspace, echo = F}
+rm(list=setdiff(ls(), "dataC"))
+saveRDS(dataC, "./SimCdata.RDS")
+```

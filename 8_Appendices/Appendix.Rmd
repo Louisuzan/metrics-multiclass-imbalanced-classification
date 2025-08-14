@@ -1,0 +1,136 @@
+\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+
+```{r, echo = FALSE}
+hook_plot_tex_footer <- function(x, options) {  
+  x_out <- knitr:::hook_plot_tex(x, options) 
+  if(!is.null(options$fig.footer)) {
+    inter <- sprintf("\\floatfoot{%s}\n\\end{figure}", options$fig.footer[1])
+    x_out <- gsub(x=x_out, pattern="\n\\end{figure}", replacement=inter, fixed=TRUE)
+  }
+  x_out
+}
+knitr::knit_hooks$set(plot=hook_plot_tex_footer)
+```
+
+# Appendix
+This section provides more details on the development of MCC~cb~, the class-balanced version of Matthews correlation coefficient. MCC~cb~ is transformed using the multiclass formulation of MCC [@Gorodkin2004] and extends the work of @Luque2019 on binary metrics. Therefore, the methodology used in @Luque2019 is briefly described first, using the binary formulation of MCC [@Matthews1975]. Subsequently, the approach for developing MCC~cb~ is presented. This section will end with a binary example that demonstrates the resemblance between MCC~cb~ and the class-balanced version of MCC described in @Luque2019.
+
+## Class-Balanced MCC for Binary Scenarios: $\operatorname{\mathbf{MCC}_{\mathbf{Luque,cb}}}$
+The methodology described in @Luque2019 is based on and limited to metrics evaluating binary classification results. The binary confusion matrix ($\mathbf{C}$) is the 2 $\times$ 2 classification result with elements $c_{ij}$, where $i,j = 1,2$. In @Luque2019 the rows present the actual values and the columns present the predicted values, note that this is reversed in the main text of this thesis. In binary classification, one class is referred to as the positive class (P) and the other as the negative class (N). Therefore, the confusion matrix can be defined in terms of \mbox{True Positives (TP: $c_{PP}$),} False Positives (FP: $c_{NP}$), True Negatives (TN: $c_{NN}$), and \mbox{False Negatives (FN: $c_{PN}$).}
+
+Following the methodology of @Luque2019, the first step is to redefine the binary confusion matrix ($\mathbf{C}$). In this step, the elements $c_{ij}$ are reformulated as a ratio relative to the total number of observations of the actual class $i$ using $\lambda$s, where $\lambda_{ij} = \frac{c_{ij}}{\sum_{j=1}^{k}c_{ij}}$ and $c_{ij}$ = $\lambda_{ij} \cdot \sum_{j=1}^{k}c_{ij}$. Ultimately, the confusion matrix can be rewritten in terms of $\lambda_{PP}$, $\lambda_{NN}$, and $m$ (see Figure 9).
+
+```{r plot, fig.align = 'left', out.width = "10cm", fig.cap= "Confusion Matrix ($\\mathbf{C}$) by Luque et al. (2019)", fig.footer='Note.\\emph{ The definition of} m \\emph{is the total number of observations or instances. Therefore,} $m_{P}$ \\emph{is the number of observations that are actual positives (i.e., the sum of row of P) and} $m_{N}$ \\emph{is the number of observations that are actual negatives (i.e., the sum of row of N). It follows that} $\\lambda_{PP}$ \\emph{is} $\\frac{TP}{m_{P}}$ \\emph{and} $\\lambda_{NN}$ \\emph{is} $\\frac{TN}{m_{N}}$ \\emph{. Last,} e \\emph{is the sum of the columns or predicted values, thus} $e_{P}$ \\emph{is the sum the predicted} P\\emph{s and} $e_{N}$ \\emph{is the sum of the predicted} N\\emph{s. Reprinted from \u201CThe impact of class imbalance in classification performance metrics based on the binary confusion matrix", by A. Luque, A. Carrasco, A. Martín, \\& A. de las Heras, 2019,} Pattern Recognition\\emph{,} 91\\emph{, p. 218 (https://doi.org/10.1016/j.patcog.2019.02.023). Copyright 2019 by Elsevier.}', echo=F}
+knitr::include_graphics('./8_Appendices/Luque et al. 2019.png') 
+```
+
+The second step is to redefine the MCC with the terminology as displayed in Figure 9. MCC in its original form is defined as: $$\operatorname{MCC_{binary}}=\frac{T P \cdot T N-F P \cdot F N}{\sqrt{(T P+F P) \cdot(T P+F N) \cdot(T N+F P) \cdot(T N+F N)}},
+$$
+Hence, MCC can be redefined in the terms of @Luque2019 as:
+$$\operatorname{MCC_{Luque}}= \resizebox{0.86\linewidth}{!}{$\frac{\lambda_{P P} m_{P} \cdot \lambda_{N N} m_{N}-\lambda_{N P} m_{N} \cdot \lambda_{P N} m_{P}}{\sqrt{\left(\lambda_{P P} m_{P}+\lambda_{N P} m_{N}\right) \cdot (\lambda_{P P} m_{P}+\lambda_{P N} m_{P})  \cdot (\lambda_{N N} m_{N}+\lambda_{N P} m_{N}) \cdot (\lambda_{N N} m_{N}+\lambda_{P N} m_{P})}}$},
+$$ 
+where $\lambda_{PN}$ is $1-\lambda_{PP}$, and $\lambda_{NP}$ is $1-\lambda_{NN}$. 
+
+As a third step, the imbalance coefficient ($\delta$) was introduced to measure the severity of class imbalance. $\delta$ is defined as:
+$$
+\delta = 2 \cdot \frac{m_{P}}{m}-1.
+$$
+Therefore, the imbalance ratio (IR) can be defined in terms of $\delta$ as:
+$$ 
+\operatorname{IR} = \frac{1+\delta}{1-\delta}.
+$$
+
+The fourth step is redefining MCC as a function of imbalance. As a result, MCC is redefined by @Luque2019 as:
+$$
+\operatorname{MCC_{Luque}}=\frac{\lambda_{P P}+\lambda_{N N}-1}{\sqrt{\left(\lambda_{P P}+\left(1-\lambda_{N N}\right) \cdot \frac{1-\delta}{1+\delta}\right) \cdot \left(\lambda_{N N}+\left(1-\lambda_{P P}\right) \cdot \frac{1+\delta}{1-\delta}\right)}}.
+$$
+Note that IR = IR~P~ = $\frac{1+\delta}{1-\delta}$ and IR~N~ = $\frac{1-\delta}{1+\delta}$ can be simplified to IR~P~ = $\frac{m_{P}}{m_{N}}$ and IR~N~ = $\frac{m_{N}}{m_{P}}$.
+
+The fifth step is transforming MCC into a class-balanced metric. This entails that the imbalance component needs to be removed from the equation. When the confusion matrix is balanced: $\frac{m_{P}}{m}$ = 0.5, $\delta$ = 0, and IR = 1. This means that IR can be canceled out. It follows that, the class-balanced version of MCC of @Luque2019 can be defined as:  
+$$
+\operatorname{MCC}_{Luque,cb}=\frac{\lambda_{P P}+\lambda_{N N}-1}{\sqrt{\left(\lambda_{P P}+\left(1-\lambda_{N N}\right)\right) \cdot \left(\lambda_{N N}+\left(1-\lambda_{P P}\right)\right)}}.
+$$\singlespacing
+
+\doublespacing
+## Class-Balanced MCC for Multiclass Scenarios: $\operatorname{\mathbf{MCC}_{\mathbf{cb}}}$
+The approach of @Luque2019 is not directly applicable to multiclass scenarios. Therefore, the development of MCC~cb~ was slightly different. The multiclass version of MCC needed to be transformed rather than the binary version of MCC. In addition, a different measure was used to quantify the level of imbalance and to adjust MCC, because $\delta$ was only applicable to binary scenarios. MCC~cb~ was developed by using the notation of MCC described in @Racz2019. This notation is based on the confusion matrix $\mathbf{N}$ with elements $n_{ij}$. Note that in the main text of this thesis the confusion matrix is denoted as $\mathbf{C}$ with elements $c_{ij}$. 
+
+In short, MCC~cb~ could be derived from MCC by using a backward calculation method starting with the transformation of a hypothetical confusion matrix that was imbalanced into a balanced confusion matrix.
+
+The first step was to make the hypothetical confusion matrix, $\mathbf{N}$, class balanced. In this approach, the imbalance ratio ($IR_j$) was used, which is defined as: 
+$$
+IR_{j}=\frac{\sum_{i=1}^{k}n_{ij}}{\operatorname{max} \{\sum_{i=1}^{k}n_{i1}, \ldots, \sum_{i=1}^{k}n_{ik}\}},
+$$
+where $IR_j$ is the imbalance ratio of the $j$-th class. In order to make the hypothetical confusion matrix ($\mathbf{N}$) class balanced, each cell of the confusion matrix was divided by the corresponding imbalance ratio of the actual class ($j$). That is, $\frac{n_{ij}}{IR_{j}}$. 
+
+Given that the hypothetical confusion matrix is now balanced. MCC~cb~ could be derived from MCC. Following the notation of @Racz2019, MCC is defined as:
+$$
+\operatorname{MCC_{multiclass}} =\frac{n_{correct} \cdot n-\sum_{l=1}^{k} n_{l, predicted} \cdot n_{l,actual}} {\sqrt{\left(n^{2}-\sum_{l=1}^{k} n_{l,predicted}{ }^{2}\right) \cdot\left(n^{2}-\sum_{l=1}^{k} n_{l,actual}{ }^{2}\right)}},
+$$
+where $n_{correct} = \sum_{j=1}^{k} n_{j j}$, $n = \sum_{j=1}^{k} \sum_{i=1}^{k} n_{i j}$, $n_{l,predicted} = \sum_{j=1}^{k} n_{l j}$, and $n_{l, actual} = \sum_{i=1}^{k} n_{i l}$.
+
+\noindent Therefore, MCC~cb~ can be defined as:
+$$
+\operatorname{MCC_{cb}} = \operatorname{MCC^{\prime}}
+$$
+\vspace{-4.5mm}$$
+\operatorname{MCC_{cb}}=\frac{n_{correct}^{\prime} \cdot n^{\prime}-\sum_{l=1}^{k} n_{l, predicted}^{\prime} \cdot n_{l, actual}^{\prime}}{\sqrt{\left(n^{\prime 2}-\sum_{l=1}^{k} n_{l,predicted}^{\prime}{ }^{2}\right) \cdot\left(n^{\prime 2}-\sum_{l=1}^{k} n_{l, actual}^{\prime}{ }^{2}\right)}}
+$$\vspace{3.5mm}
+$$
+\begin{split}
+\operatorname{MCC_{cb}}=\frac{\sum_{j=1}^{k} \frac{n_{j j}}{IR j} \cdot \sum_{j=1}^{k} \sum_{i=1}^{k} \frac{n_{i j}}{IR_{j}}-\sum_{l=1}^{k}\left(\sum_{j=1}^{k} \frac{n_{l j}}{IR_{j}} \cdot \sum_{i=1}^{k} \frac{n_{i l}}{IR_{l}}\right)}{\sqrt{\left(\left(\sum_{j=1}^{k} \sum_{i=1}^{k} \frac{n_{i j}}{IR_{j}}\right)^{2}-\sum_{i=1}^{k}\left(\sum_{j=1}^{k} \frac{n_{i j}}{IR_{j}}\right)^{2}\right) \cdot\left(\left(\sum_{j=1}^{k} \sum_{i=1}^{k} \frac{n_{i j}}{IR_{j}}\right)^{2}-\sum_{j=1}^{k}\left(\sum_{i=1}^{k} \frac{n_{i j}}{IR_{j}}\right)^{2}\right)}},  
+\end{split}
+$$
+where $n_{correct}^{\prime}=\sum_{j=1}^{k} \frac{n_{j j}}{IR_{j}}$, $n^{\prime}=\sum_{j=1}^{k} \sum_{i=1}^{k} \frac{n_{i j}}{IR_{j}}$, $n_{l, predicted}^{\prime}=\sum_{j=1}^{k} \frac{n_{l j}}{IR_{j}}$, and $n_{l, actual}^{\prime}=\sum_{i=1}^{k} \frac{n_{i l}}{IR_{l}}$. Note that $IR_j$ is based on a confusion matrix where the columns represent the actuals and the rows represent the predictions.
+
+As a result of this transformation, MCC~cb~, is corrected for class imbalance, making it a class-balanced metric. MCC~cb~ can directly be applied to the (imbalanced) confusion matrix. MCC~cb~ has the same range and interpretation as MCC: it indicates the correlation between actual and predicted classifications in a class-balanced manner, with values between --1 and 1. MCC~cb~ can be used in every situation even when the classes are evenly distributed. 
+
+While the notation of @Racz2019 was used to develop MCC~cb~, MCC and MCC~cb~ can be rewritten in a more elegant and concise notation. As mentioned earlier, the confusion matrix in the main text is denoted as $\mathbf{C}$ representing the $k \times k$ classification of predicted classes (rows) against observed classes (columns), with elements $c_{ij}$ where $i, j = 1, 2, \ldots, k$. Therefore, the following notations are used in the main text of this thesis.
+$$
+\operatorname{MCC} = \frac{\sum_{i=1}^{k}c_{ii} \cdot c_{++}-\sum_{i=1}^{k}c_{i+} \cdot c_{+i}}{\sqrt{(c^{2}_{++}-\sum_{i=1}^{k}c^{2}_{i+}) \cdot (c^{2}_{++}-\sum_{i=1}^{k}c^{2}_{+i}})},
+$$
+where $c_{++}$ is the sum of all elements of $\mathbf{C}$ or $\sum_{j=1}^{k}\sum_{i=1}^{k}c_{ij}$, $c_{+i}$ is the sum of the elements in the rows for each column or $\sum_{i=1}^{k}c_{ij}$, and $c_{i+}$ is the sum of the elements in the columns for each row or $\sum_{j=1}^{k}c_{ij}$. 
+$$
+IR_{i}=\frac{c_{+i}}{\operatorname{max} \{c_{+1}, \ldots, c_{+k}\}},
+$$
+where $IR_i$ is the imbalance ratio of the $i$-th class. 
+$$
+\operatorname{MCC_{cb}}=\resizebox{0.87\linewidth}{!}{$\frac{\sum_{i=1}^{k} \frac{c_{ii}}{IR_{i}} \cdot \sum_{i=1}^{k} \frac{c_{+i}}{IR_{i}}-\sum_{i=1}^{k} \sum_{j=1}^{k}\frac{c_{ij}}{IR_{j}} \cdot \frac{c_{+i}}{IR_{i}}}{\sqrt{\left(\left(\sum_{i=1}^{k} \frac{c_{+i}}{IR_{i}}\right)^{2}-\sum_{i=1}^{k}\left(\sum_{j=1}^{k} \frac{c_{ij}}{IR_{j}}\right)^{2}\right) \cdot \left(\left(\sum_{i=1}^{k} \frac{c_{+i}}{IR_{i}}\right)^{2}-\sum_{i=1}^{k}\left(\frac{c_{+i}}{IR_{i}}\right)^{2}\right)}}$}.
+$$
+\singlespacing
+
+\doublespacing
+## A Binary Example: Class-Balanced Metrics Versus Original 
+With an example, the resemblance is demonstrated between the class-balanced metrics MCC~cb~ and MCC~Luque,cb~ on the one hand and MCC~Luque~, MCC~binary~, and MCC~multiclass~ on the other. Given that MCC~Luque,cb~ can only be applied to binary classifications results and MCC~cb~ can be applied to both binary and multiclass classification results, a binary example is used.
+
+The example consists of a confusion matrix with an imbalanced class distribution with a ratio of 1:30 between the classes. The minority class is almost completely misclassified and the majority class is almost completely well-classified. Based on the confusion matrix: 
+$$
+C_{predicted,actual }= \begin{bmatrix}
+1 & 2 \\ 4 & 148 \end{bmatrix},
+$$
+the different versions of MCC can be computed as presented hereafter.
+
+\abovedisplayskip=0pt
+\begin{eqnarray*}
+\operatorname{MCC_{binary}} &=& \frac{1 \cdot 148- 2 \cdot 4}{\sqrt{(1+2) \cdot(1+4) \cdot(148+ 2) \cdot(148 + 4)}} \\
+&=& .2394
+\end{eqnarray*}
+\begin{eqnarray*}
+\operatorname{MCC_{multiclass}} &=& \resizebox{0.8\textwidth}{!}{$\frac{\left(1 + 4\right) \cdot  \left(1 + 2 + 4 + 148\right)-  \left(3 \cdot   5 + 152 \cdot   150\right)}{\sqrt{\left(\left(1 + 2 + 4 + 148\right)^{2}-\left(\left(1 + 2\right)^{2}  + \left(4 + 148\right)^{2}\right)\right) \cdot \left(\left(1 + 2 + 4 + 148\right)^{2}-\left(\left(1 + 4\right)^{2} + \left(2 + 148\right)^{2}\right)\right)}}$} \\
+&=& .2394
+\end{eqnarray*}
+\begin{eqnarray*}
+\operatorname{MCC_{Luque}} &=& \frac{\left(\frac{1}{(1+4)} + \frac{148}{(2+148)} -1\right)} {\sqrt{\left(\frac{1}{(1+4)}+(1-\frac{148}{(2+148)})\cdot \frac{150}{5}\right) \cdot \left(\frac{148}{(2+148)}+(1-\frac{1}{(1+4)})\cdot \frac{5}{150}\right)}} \\
+&=& .2394
+\end{eqnarray*}
+\begin{eqnarray*}
+\operatorname{MCC_{Luque,cb}} &=& \frac{\left(\frac{1}{(1+4)} + \frac{148}{(2+148)} -1\right)} {\sqrt{\left(\frac{1}{(1+4)}+(1-\frac{148}{(2+148)})\right) \cdot \left(\frac{148}{(2+148)}+(1-\frac{1}{(1+4)})\right)}} \\
+&=& .3024
+\end{eqnarray*}
+\begin{eqnarray*}
+\operatorname{MCC_{cb}} &=& \resizebox{0.86\linewidth}{!}{$\frac{\left(\frac{1}{.033} + \frac{148}{1}\right) \cdot\left(\frac{1}{.033} + \frac{4}{.033} + \frac{2}{1} + \frac{148}{1}\right) - \left(\left(\frac{1}{.033} + \frac{2}{1}\right) \cdot\left(\frac{1}{.033}+\frac{4}{.033}\right)+\left(\frac{4}{.033}+\frac{148}{1}\right) \cdot\left(\frac{2}{1}+\frac{148}{1}\right)\right)}{\sqrt{\left(\left(\frac{1}{.033}+\frac{4}{.033}+\frac{2}{1}+\frac{148}{1}\right)^{2}-\left(\left(\frac{1}{.033}+\frac{2}{1}\right)^{2}+\left(\frac{4}{.033}+\frac{148}{1}\right)^{2}\right)\right) \cdot\left(\left(\frac{1}{.033}+\frac{4}{.033}+\frac{2}{1}+\frac{148}{1}\right)^{2}-\left(\left(\frac{1}{.033}+\frac{4}{.033}\right)^{2}+\left(\frac{2}{1}+\frac{148}{1}\right)^{2}\right)\right)}}$}  \\
+&=& .3024
+\end{eqnarray*} 
+
+As expected, the formulas of MCC~cb~ and MCC~Luque,cb~ provide identical results but differ from the other MCC's that follow the original formulation of MCC while using different notations. This underscores the uniformity between the class-balanced metrics, and their discrepancy with the standard MCC formulations. It should be noted that the values for the standard MCC's are lower than the class-balanced versions. This highlights that MCC in binary imbalanced scenarios is in fact an appropriate metric. However, in the context of multiclass imbalanced classifications MCC behaves differently and MCC~cb~ is a better alternative, given its class-balancing properties. 
+

@@ -1,0 +1,176 @@
+<!-- Data preparation simulation study A -->
+
+```{r A: load packages, echo = F}
+library("tidyr")
+```
+
+```{r A: set up, echo = F}
+source('./Functions.R')
+options(scipen = 999)
+set.seed(5)
+```
+
+```{r A: Preparation sim A: Define MISCL, echo = F, message = F, warning = F}
+# Simulation A
+
+# Three types of random classifiers are simulated
+# Misclassification type (MISCL): 
+# Random classifier 1 = All observations are classified as the majority class.
+All_to_maj <- c(0, 0, 0, 0,
+                0, 0, 0, 0,
+                0, 0, 0, 0,
+                1, 1, 1, 1) # 1 = 100%
+All_to_maj <- matrix(All_to_maj, 4, 4, byrow = T) # Vector to matrix
+
+# Random classifier 2 = Proportional to class composition in the training set.
+Proportional <- function( IR, nMIN, nCl = 4 ){
+  min <- 1 / ( nMIN + ( nCl - nMIN ) * IR )
+  maj <- IR * min 
+  vec <- rep( c( min, maj ), times = c( nMIN, nCl - nMIN ) )
+  Mvec <- matrix( vec, nCl, nCl, byrow = T )
+  Mprop <- Mvec * t( Mvec )
+  # Check if probabilities add op to 1.
+  # as.factor is needed to overcome problems with "Floating Point Math"
+  if ( as.factor( sum( Mprop ) ) != 1 ) { stop( 'Probabilities dont add up to 1.
+                                                Reconcider your input' ) }
+  return( Mprop )
+} # End Proportional()
+
+# Random classifier 3 = Equal probabilities. 
+nCl = 4
+Equal <- rep(1 / nCl, nCl * nCl) 
+Equal = matrix(Equal, 4, 4) 
+```
+
+```{r A: Generate probability matrices, echo = F, message = F, warning = F}
+# Generating probability matrices based on imbalance, the number of minority
+# classes and type of misclassification (in this simulation type of classifier)
+# p*_*_* = probabilities_nMIN_IR_MISCL
+# PM is formulated in Functions.R
+
+p1_1_1   <- PM(IR = 1.2,   nMIN = 1, MISCL = All_to_maj) 
+p2_1_1   <- PM(IR = 1.2,   nMIN = 2, MISCL = All_to_maj)
+p3_1_1   <- PM(IR = 1.2,   nMIN = 3, MISCL = All_to_maj)
+p1_3_1   <- PM(IR = 3,     nMIN = 1, MISCL = All_to_maj)
+p2_3_1   <- PM(IR = 3,     nMIN = 2, MISCL = All_to_maj)
+p3_3_1   <- PM(IR = 3,     nMIN = 3, MISCL = All_to_maj)
+p1_30_1  <- PM(IR = 30,    nMIN = 1, MISCL = All_to_maj)
+p2_30_1  <- PM(IR = 30,    nMIN = 2, MISCL = All_to_maj)
+p3_30_1  <- PM(IR = 30,    nMIN = 3, MISCL = All_to_maj)
+p1_300_1 <- PM(IR = 300,   nMIN = 1, MISCL = All_to_maj)
+p2_300_1 <- PM(IR = 300,   nMIN = 2, MISCL = All_to_maj)
+p3_300_1 <- PM(IR = 300,   nMIN = 3, MISCL = All_to_maj)
+
+p1_1_2   <- Proportional(nMIN = 1, IR = 1.2)
+p2_1_2   <- Proportional(nMIN = 2, IR = 1.2)
+p3_1_2   <- Proportional(nMIN = 3, IR = 1.2)
+p1_3_2   <- Proportional(nMIN = 1, IR = 3)
+p2_3_2   <- Proportional(nMIN = 2, IR = 3)
+p3_3_2   <- Proportional(nMIN = 3, IR = 3)
+p1_30_2  <- Proportional(nMIN = 1, IR = 30)
+p2_30_2  <- Proportional(nMIN = 2, IR = 30)
+p3_30_2  <- Proportional(nMIN = 3, IR = 30)
+p1_300_2 <- Proportional(nMIN = 1, IR = 300)
+p2_300_2 <- Proportional(nMIN = 2, IR = 300)
+p3_300_2 <- Proportional(nMIN = 3, IR = 300)
+
+p1_1_3   <- PM(IR = 1.2,   nMIN = 1, MISCL = Equal) 
+p2_1_3   <- PM(IR = 1.2,   nMIN = 2, MISCL = Equal) 
+p3_1_3   <- PM(IR = 1.2,   nMIN = 3, MISCL = Equal) 
+p1_3_3   <- PM(IR = 3,     nMIN = 1, MISCL = Equal) 
+p2_3_3   <- PM(IR = 3,     nMIN = 2, MISCL = Equal) 
+p3_3_3   <- PM(IR = 3,     nMIN = 3, MISCL = Equal) 
+p1_30_3  <- PM(IR = 30,    nMIN = 1, MISCL = Equal) 
+p2_30_3  <- PM(IR = 30,    nMIN = 2, MISCL = Equal) 
+p3_30_3  <- PM(IR = 30,    nMIN = 3, MISCL = Equal) 
+p1_300_3 <- PM(IR = 300,   nMIN = 1, MISCL = Equal) 
+p2_300_3 <- PM(IR = 300,   nMIN = 2, MISCL = Equal) 
+p3_300_3 <- PM(IR = 300,   nMIN = 3, MISCL = Equal) 
+
+```
+
+```{r A: Simulation confusion matrices, echo = F, message = F, warning = F}
+# Simulating (S) confusion matrices based on probabilities, imbalance (IR), 
+# number of minority classes (nMIN), the type of misclassifications (MISCL),
+# the number of observations (n = 500.000) and the number of repetitions (nrep = 100).
+# m*_*_*_* metrics_nMIN_IR_MISCL_n 
+# Simulation function S() is formulated in Functions.R
+
+# Classifier 1: All to majority.
+m1_1_1_500000   <- cbind(nMIN = 1, IR = 1.2,   MISCL = "All_to_maj", n = 500000, S(500000, p1_1_1, 100))
+m1_3_1_500000   <- cbind(nMIN = 1, IR = 3,     MISCL = "All_to_maj", n = 500000, S(500000, p1_3_1, 100))
+m1_30_1_500000  <- cbind(nMIN = 1, IR = 30,    MISCL = "All_to_maj", n = 500000, S(500000, p1_30_1, 100))
+m1_300_1_500000 <- cbind(nMIN = 1, IR = 300,   MISCL = "All_to_maj", n = 500000, S(500000, p1_300_1, 100))
+m2_1_1_500000   <- cbind(nMIN = 2, IR = 1.2,   MISCL = "All_to_maj", n = 500000, S(500000, p2_1_1, 100))
+m2_3_1_500000   <- cbind(nMIN = 2, IR = 3,     MISCL = "All_to_maj", n = 500000, S(500000, p2_3_1, 100))
+m2_30_1_500000  <- cbind(nMIN = 2, IR = 30,    MISCL = "All_to_maj", n = 500000, S(500000, p2_30_1, 100))
+m2_300_1_500000 <- cbind(nMIN = 2, IR = 300,   MISCL = "All_to_maj", n = 500000, S(500000, p2_300_1, 100))
+m3_1_1_500000   <- cbind(nMIN = 3, IR = 1.2,   MISCL = "All_to_maj", n = 500000, S(500000, p3_1_1, 100))
+m3_3_1_500000   <- cbind(nMIN = 3, IR = 3,     MISCL = "All_to_maj", n = 500000, S(500000, p3_3_1, 100))
+m3_30_1_500000  <- cbind(nMIN = 3, IR = 30,    MISCL = "All_to_maj", n = 500000, S(500000, p3_30_1, 100))
+m3_300_1_500000 <- cbind(nMIN = 3, IR = 300,   MISCL = "All_to_maj", n = 500000, S(500000, p3_300_1, 100))
+
+# Classfier 2: Proportional to class composition.
+m1_1_2_500000   <- cbind(nMIN = 1, IR = 1.2, MISCL = "Proportional", n = 500000, S(500000, p1_1_2, 100))
+m1_3_2_500000   <- cbind(nMIN = 1, IR = 3,   MISCL = "Proportional", n = 500000, S(500000, p1_3_2, 100))
+m1_30_2_500000  <- cbind(nMIN = 1, IR = 30,  MISCL = "Proportional", n = 500000, S(500000, p1_30_2, 100))
+m1_300_2_500000 <- cbind(nMIN = 1, IR = 300, MISCL = "Proportional", n = 500000, S(500000, p1_300_2, 100))
+m2_1_2_500000   <- cbind(nMIN = 2, IR = 1.2, MISCL = "Proportional", n = 500000, S(500000, p2_1_2, 100))
+m2_3_2_500000   <- cbind(nMIN = 2, IR = 3,   MISCL = "Proportional", n = 500000, S(500000, p2_3_2, 100))
+m2_30_2_500000  <- cbind(nMIN = 2, IR = 30,  MISCL = "Proportional", n = 500000, S(500000, p2_30_2, 100))
+m2_300_2_500000 <- cbind(nMIN = 2, IR = 300, MISCL = "Proportional", n = 500000, S(500000, p2_300_2, 100))
+m3_1_2_500000   <- cbind(nMIN = 3, IR = 1.2, MISCL = "Proportional", n = 500000, S(500000, p3_1_2, 100))
+m3_3_2_500000   <- cbind(nMIN = 3, IR = 3,   MISCL = "Proportional", n = 500000, S(500000, p3_3_2, 100))
+m3_30_2_500000  <- cbind(nMIN = 3, IR = 30,  MISCL = "Proportional", n = 500000, S(500000, p3_30_2, 100))
+m3_300_2_500000 <- cbind(nMIN = 3, IR = 300, MISCL = "Proportional", n = 500000, S(500000, p3_300_2, 100))
+
+# Classifier 3: Equal probabilities 
+m1_1_3_500000   <- cbind(nMIN = 1, IR = 1.2, MISCL = "Equal", n = 500000, S(500000, p1_1_3, 100))
+m1_3_3_500000   <- cbind(nMIN = 1, IR = 3,   MISCL = "Equal", n = 500000, S(500000, p1_3_3, 100))
+m1_30_3_500000  <- cbind(nMIN = 1, IR = 30,  MISCL = "Equal", n = 500000, S(500000, p1_30_3, 100))
+m1_300_3_500000 <- cbind(nMIN = 1, IR = 300, MISCL = "Equal", n = 500000, S(500000, p1_300_3, 100))
+m2_1_3_500000   <- cbind(nMIN = 2, IR = 1.2, MISCL = "Equal", n = 500000, S(500000, p2_1_3, 100))
+m2_3_3_500000   <- cbind(nMIN = 2, IR = 3,   MISCL = "Equal", n = 500000, S(500000, p2_3_3, 100))
+m2_30_3_500000  <- cbind(nMIN = 2, IR = 30,  MISCL = "Equal", n = 500000, S(500000, p2_30_3, 100))
+m2_300_3_500000 <- cbind(nMIN = 2, IR = 300, MISCL = "Equal", n = 500000, S(500000, p2_300_3, 100))
+m3_1_3_500000   <- cbind(nMIN = 3, IR = 1.2, MISCL = "Equal", n = 500000, S(500000, p3_1_3, 100))
+m3_3_3_500000   <- cbind(nMIN = 3, IR = 3,   MISCL = "Equal", n = 500000, S(500000, p3_3_3, 100))
+m3_30_3_500000  <- cbind(nMIN = 3, IR = 30,  MISCL = "Equal", n = 500000, S(500000, p3_30_3, 100))
+m3_300_3_500000 <- cbind(nMIN = 3, IR = 300, MISCL = "Equal", n = 500000, S(500000, p3_300_3, 100))
+```
+
+```{r A: Combine into one dataframe, echo = F, message = F, warning = F}
+# Combining all simulations into one dataframe.
+data <- rbind(
+  # Classifier 1: All to Majority
+  m1_1_1_500000, m1_3_1_500000, m1_30_1_500000, m1_300_1_500000,
+  m1_1_2_500000, m2_3_1_500000, m2_30_1_500000, m2_300_1_500000,
+  m2_1_1_500000, m3_3_1_500000, m3_30_1_500000, m3_300_1_500000,
+  
+  # Classifier 2: Proportional to class composition.
+  m2_1_2_500000, m1_3_2_500000, m1_30_2_500000, m1_300_2_500000,
+  m3_1_1_500000, m2_3_2_500000, m2_30_2_500000, m2_300_2_500000,
+  m3_1_2_500000, m3_3_2_500000, m3_30_2_500000, m3_300_2_500000,
+  # Classifier 3: Equal probabilites 
+  m1_1_3_500000, m1_3_3_500000, m1_30_3_500000, m1_300_3_500000,
+  m2_1_3_500000, m2_3_3_500000, m2_30_3_500000, m2_300_3_500000,
+  m3_1_3_500000, m3_3_3_500000, m3_30_3_500000, m3_300_3_500000
+  ) # End rbind()
+
+data$IR    <- factor(data$IR)
+data$n     <- factor(data$n)
+data$nMIN  <- factor(data$nMIN)
+data$MISCL <- factor(data$MISCL)
+```
+
+```{r A wide to long, echo = F}
+# From wide to long format 
+dataA     <- data
+dataA$row <- factor(rownames(dataA)) 
+dataA     <- tidyr::gather(dataA, METRIC, y, Accuracy:MCC.cb, factor_key = TRUE)
+```
+
+```{r A save & clear workspace, echo = F}
+rm(list = setdiff(ls(), "dataA"))
+saveRDS(dataA, "./SimAdata.RDS")
+```

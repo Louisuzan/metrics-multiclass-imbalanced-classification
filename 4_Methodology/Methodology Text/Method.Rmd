@@ -1,0 +1,256 @@
+# Methodology
+In this section, the definitions of the four metrics are provided first. Study descriptions and the simulation procedure are provided subsequently. The section continues with describing how metric behavior was statistically analyzed. The methodology section ends with the technical details and the software that was used. 
+
+## Metric Definitions
+Evaluation metrics evaluate the confusion matrix ($\mathbf{C}$) that represents the result when testing a classification model. $\mathbf{C}$ is the $k \times k$ classification of predicted classes (rows) against observed classes (columns), with elements $c_{ij}$ where $i, j = 1, 2, \ldots, k$. In this thesis, the evaluation scores of Accuracy, F1~m~, MCC, and MCC~cb~ were compared under different scenarios. 
+
+Accuracy [@Ballabio2018] is defined as:
+$$
+\operatorname{Accuracy} = \sum_{i=1}^{k}\frac{c_{ii}}{c_{++}},
+$$
+where $c_{++}$ is the sum of all elements of $\mathbf{C}$; $\sum_{j=1}^{k}\sum_{i=1}^{k}c_{ij}$. Accuracy is the ratio of correct classifications against the total number of observations. Accuracy ranges from 0 (*complete misclassification*) to 1 (*perfect classification*). 
+
+F1~m~ [@Lewis1996; @Ballabio2018] is defined as:
+$$
+\operatorname{F1_m} = \sum_{i=1}^{k}2\cdot \left(\frac{precision_{i}\cdot recall_{i}}{precision_{i} + recall_{i}}\right)/ k = \sum_{i=1}^{k}2\cdot\left( \frac{\frac{c_{ii}}{c_{i+}}\cdot \frac{c_{ii}}{c_{+i}}}{\frac{c_{ii}}{c_{i+}}+\frac{c_{ii}}{c_{+i}}}\right) /k,
+$$
+where $c_{+i}$ is the sum of the elements in the rows for each column; $\sum_{i=1}^{k}c_{ij}$, and $c_{i+}$ is the sum of the elements in the columns for each row; $\sum_{j=1}^{k}c_{ij}$. The 'F1' in F1~m~ refers to F1-score [@Rijsbergen1979], which is the harmonic mean of precision and recall. The 'm' in F1~m~ stands for macro averaging, which means that the F1-scores are averaged over all classes. The F1~m~ ranges from 0 (*complete misclassification*) to 1 (*perfect classification*). 
+
+MCC for multiclass classification [@Gorodkin2004] is defined as:
+$$
+\operatorname{MCC} = \frac{\sum_{i=1}^{k}c_{ii} \cdot c_{++}-\sum_{i=1}^{k}c_{i+} \cdot c_{+i}}{\sqrt{(c^{2}_{++}-\sum_{i=1}^{k}c^{2}_{i+}) \cdot (c^{2}_{++}-\sum_{i=1}^{k}c^{2}_{+i}})}.
+$$
+MCC indicates the correlation between actual and predicted classifications. MCC ranges from --1 to 1. A value of 1 indicates perfect classification. A value of 0 represents random classification, meaning that the performance is not better than classification without using predictive variables. A value of --1 only holds for special cases with complete misclassification. 
+
+MCC~cb~ is the adapted version of MCC that corrects for class imbalance. MCC~cb~ is introduced in this thesis as a novel formulation not previously described in literature, though it was inspired by the work of @Luque2019 on binary metrics. However, there are two important differences. First, MCC~cb~ is a class-balanced evaluation metric suitable for both binary and multiclass scenarios. Second, this study used the imbalance ratio, instead of the imbalance coefficient ($\delta$), to quantify the level of class imbalance to adjust metrics, because the $\delta$ is only applicable to binary scenarios. The Appendix provides more detail on the development of MCC~cb~ and demonstrates MCC~cb~'s resemblance to Luque's approach through an imbalanced binary classification example with identical outcomes for both calculations.
+
+With MCC~cb~, this thesis aimed to address the reported limitations of MCC in multiclass imbalanced classification tasks while maintaining the beneficial properties of MCC. By removing the component of imbalance, MCC~cb~ is theoretically a more appropriate metric for imbalanced scenarios. MCC~cb~ achieves this by adjusting each value of the confusion matrix based on the level of imbalance relative to the largest class in the dataset. The level of imbalance is measured by $IR_i$, defined as:
+$$
+IR_{i}=\frac{c_{+i}}{\operatorname{max} \{c_{+1}, \ldots, c_{+k}\}},
+$$
+where $IR_i$ is the imbalance ratio of the $i$-th class. Consequently, MCC~cb~ is defined as:
+$$
+\operatorname{MCC_{cb}}=\resizebox{0.87\linewidth}{!}{$\frac{\sum_{i=1}^{k} \frac{c_{ii}}{IR_{i}} \cdot \sum_{i=1}^{k} \frac{c_{+i}}{IR_{i}}-\sum_{i=1}^{k} \sum_{j=1}^{k}\frac{c_{ij}}{IR_{j}} \cdot \frac{c_{+i}}{IR_{i}}}{\sqrt{\left(\left(\sum_{i=1}^{k} \frac{c_{+i}}{IR_{i}}\right)^{2}-\sum_{i=1}^{k}\left(\sum_{j=1}^{k} \frac{c_{ij}}{IR_{j}}\right)^{2}\right) \cdot \left(\left(\sum_{i=1}^{k} \frac{c_{+i}}{IR_{i}}\right)^{2}-\sum_{i=1}^{k}\left(\frac{c_{+i}}{IR_{i}}\right)^{2}\right)}}$}.
+$$
+MCC~cb~ has the same range and interpretation as MCC: it indicates the correlation between actual and predicted classifications in a class balanced manner, with values between --1 and 1. 
+
+Since MCC and MCC~cb~ have a range of [--1, 1], different from the [0, 1] range of Accuracy and F1~m~, normalization was necessary to compare the four metrics [@Ballabio2018; @Branco2017; @Luque2019]. MCC and MCC~cb~ were transformed to the range [0, 1] using: 
+$$\text{nMCC}_{*} = \frac{\text{MCC}_{*}+1}{2},$$
+where $*$ denotes either no subscript or 'cb'. Both nMCC and nMCC~cb~ now range from 0 to 1, where 1 indicates perfect classification, .5 represents random classification, and the value 0 only holds for special cases with complete misclassification. In order to draw conclusions about the appropriateness of the four metrics, different confusion matrices were simulated. The scenarios used in each simulation study are described in the next subsection. 
+
+## Simulation Studies
+This thesis consists of four simulation studies (A-D), where the behavior of Accuracy, F1~m~, nMCC, and nMCC~cb~ was studied by applying them to simulated confusion matrices. The matrices were designed to mimic different multiclass scenarios and highlight different metric characteristics. The motivation for each study is described first, followed by an explanation of the manipulated factors used as simulation parameters and a description of the simulation procedure in general terms, concluding with study specific information needed to complete the simulations.
+
+### Study Motivations
+The scenarios in studies A-D were based on confusion matrices and data structures that were encountered in the case study at CC or published in previous research, primarily as seen in @Boughorbel2017 and @Branco2017, that demonstrate problematic behavior of metrics.
+
+#### Study A.
+In the first simulation study, the work of @Boughorbel2017 on metric behavior was extended to multiclass data. Their study reveals problematic behavior of F1 and Accuracy, but not of MCC, when evaluating outcomes from random classifiers that make predictions without using any predictive features. A good metric, according to @Boughorbel2017, needs to meet two criteria in an imbalanced setting. First, metrics should evaluate the prediction outcomes from each random classifier with a similar score as they are all random classifications after all. Second, metrics need to be insensitive to imbalance^[While typically sensitivity rather than insensitivity is considered a preferred metric characteristic in imbalanced learning, in @Boughorbel2017 insensitivity to imbalance seems to be preferred when it entails that independent of the level of class imbalance a metric was able to identify the classifier performance was not better than random classification. Thus, the criterium of insensitivity is not in conflict with the common preferences in imbalanced learning.], demonstrated by consistent performance scores for different levels of imbalance. 
+
+In study A, metric behavior was studied in various scenarios with classification outcomes based on three different types of hypothetical random classifiers that are typically used as benchmarks [@Ballabio2018; @Boughorbel2017]. The first random classifier ("all to majority") assigns all observations to the most frequent class. The second classifier ("equal") generates predictions where observations have an equal (i.e., $\frac{1}{k}$) probability of being assigned to any class. The last random classifier ("proportional") generates predictions with probabilities proportional to the original class distribution (see example on page 21). While @Boughorbel2017 only visually examined metric differences in random binary scenarios, this thesis studied metric behavior in multiclass scenarios, including more factors such as class composition, and incorporated statistical inference testing that enabled a direct comparison between the metrics. 
+
+Study A addressed the following research questions: Can the findings of @Boughorbel2017 be extended to multiclass scenarios, and how does class composition affect this extension? Based on the original study, it was hypothesized that Accuracy and F1~m~ would be affected by the level of imbalance, while nMCC and the nMCC~cb~ would not. While the impact of class compositions has not been studied extensively, the benchmark equations of @Ballabio2018 provided at least some indication to formulate a hypothesis. Based on these benchmark equations it was hypothesized that nMCC and the nMCC~cb~ would be unaffected by class composition, whereas Accuracy and F1~m~ would at least be affected in the all to majority classification scenarios given that the benchmark equations for this scenario reveal their dependence on the number of observations of the largest class.
+
+#### Study B. 
+The second study aimed to provide an indication of metrics' sensitivity to minority class misclassifications (i.e., falsely predicted instances belonging to a minority class) under different conditions. In other words, in study B it was assessed how well metric scores reflect the prediction quality of minority classes. As described in the introduction, research shows that metrics often fail to reveal and/or mask minority class misclassifications [@Alejo2013; @Boughorbel2017; @Branco2017; @Chicco2020; @Hegarcia2009; @Sanchez-Crisostomo2014]. For some metrics, this limitation persists even in scenarios where the minority class is (almost) completely misclassified [@Bekkar2013; @Branco2017; @Chicco2017; @Chicco2020; @Collell2018; @Du2017; @Hegarcia2009; @Sanchez-Crisostomo2014; @Waldner2019; @Wong2022]. 
+
+In study B, metrics' ability to reflect minority class misclassifications was examined based on scenarios with partial (50\%) and complete (100\%) misclassification of one minority class. The misclassifications were always assigned to the same majority class. A more pronounced reduction in scores from partial to complete misclassification would suggest that misclassifications in minority classes were more reflected by metrics scores. Consequently, the extent of this difference provides an indication of metrics' sensitivity to these misclassifications and their ability to signal poor classification of the minority class. 
+
+It was hypothesized that nMCC~cb~ would be sensitive to minority class misclassifications given its class-balancing properties. Based on claims in previous research, it was expected that the ability to reflect the prediction quality of minority classes would be limited for Accuracy [@Bekkar2013; @Boughorbel2017; @Chicco2017; @Chicco2020; @Hegarcia2009; @Maratea2014; @Sanchez-Crisostomo2014], F1~m~ [@Branco2017; @Sanchez-Crisostomo2014], and nMCC [@Branco2017], at least in some of the scenarios. It was unclear under which conditions they would be insufficient, given that the impact of different class compositions in classification scenarios with four classes has not been extensively studied.
+
+#### Study C. 
+The third study is similar to study B by using partial and complete misclassification of one class, but this time a majority class was largely misclassified and assigned to a minority class. These misclassification patterns are relevant because they can occur, for instance, when minorities classes are highly weighted while building the classifier or when the minority class is oversampled by using resampling techniques. These are common strategies to deal with imbalanced datasets [@Blagus2015; @Boughorbel2017; @Buda2018; @Chen2016; @Chicco2017; @Fernandez-Navarro2011; @Marques2013; @Haixiang2016; @Haixiang2017; @Saez2016; @Tahir2019; @Zhou2010]. The misclassification patterns examined in study C also proved to be relevant because a similar scenario was encountered at CC: some metrics incorrectly identified the model that misclassified a large number of the majority class instances as the minority class, to be optimal. 
+
+The hypothesis about the appropriateness of metrics in this scenario was based on the research of @Branco2017. They studied numerous metrics including MCC, F1~m~, and relevance-based metrics, but excluding Accuracy. Some of the relevance-based metrics were defined by using a similar approach to the one used to define MCC~cb~. @Branco2017 found that F1~m~, among many others, was misleading in this scenario. In contrast, MCC and the relevance-based metrics were not found to be misleading. Therefore, it was hypothesized that at least nMCC and nMCC~cb~ would not be misleading in study C.
+
+#### Study D. 
+The final study aimed to show whether the metrics are sensitive to which class the misclassified observations were falsely assigned. This is important because the cost of false predictions can vary for each class. For example, misses (minority-to-majority predictions) can be more harmful in scenarios when sick patients are incorrectly classified as healthy [@Daskalaki2006; @Hegarcia2009; @Lopez2012; @Zhou2006], whereas false alarms (majority-to-minority predictions) can be detrimental in scenarios where these lead to unnecessary invasive surgeries [@Zarinabad2017]. Previous research emphasized selecting metrics that reflect the specific preferences of users [@Branco2017] and/or business objectives [@Daskalaki2006]. The insights from study D can be used to select metrics that match the user preferences in question, such as those of CC or from other users with different requirements.
+
+In the context of the case study, falsely predicting invoices from any of the three substantial late payments groups (i.e., moderately late, very late, and extremely late) as just-past-due payments (minority-to-majority predictions) are undesirable because problematic invoices, and consequently alarms signalling insolvency risks, would be missed. At the same time, false alarms need to be minimized [@Sun2007; @ZhangGao2014], because falsely predicting invoices as extremely late when they would in fact be paid just-past-due (majority-to-minority predictions) would result in unnecessary, time-consuming investigations [@Wei2013], and could negatively affect customer relations [@Daskalaki2006]. In contrast, less concerning is falsely predicting an invoice as very late instead of extremely late (minority-to-minority predictions), or the other way around, because these invoices would still be flagged and on the radar of CC. Hence, for CC minority-to-majority predictions are undesirable, majority-to-minority predictions need to be minimized, and minority-to-minority predictions is less concerning. 
+
+Simulation study D not only investigated whether metrics were sensitive to allocating the misclassifications to minority or majority class(es), but also whether the falsely assigned class was already compromised in terms of recall or precision. It was hypothesized that Accuracy would be insensitive to which class(es) the misclassifications were allocated because it only takes the number of correctly classified observations into account, whereas the other metrics could be sensitive given the influence of class precision in their calculations. 
+
+### Simulation Factors and Procedure
+In each simulation study only four-by-four confusion matrices ($\mathbf{C}$; *k* = 4; *n* = 500,000; \mbox{\textit{N} = 100)} were generated so that findings could contribute to the selection of more adequate metrics for the four-class classification problem at CC. The class order was structured for convenience: the first class was always a minority class, the last class was always a majority class, and the second and third classes were determined by the number of minority classes. With the intent to highlight possible differences in metric behavior, $\mathbf{C}$ was generated based on the probability matrix ($\mathbf{P}$), where the underlying probabilities were defined by combinations of three manipulated factors that characterized various multiclass scenarios. These factors and their levels in each simulation study were^[In a pilot study prior to this study, another factor was included. This factor represented the total number of sampled observations for each confusion matrix and consisted of three factor levels (*n* = 5,000, 50,000, and 500,000). However, inclusion led to (computational) issues and violation of assumptions: the actual IR of the simulated matrices differed excessively (up to 450%) from the intended ratios parameters; the actual ratios overlapped with multiple IR conditions; classes with a majority label sometimes consisted of fewer observations than classes labeled as a minority class; some classes contained zero observations; diagnostic plots showed severe heteroscedasticity and a systematic bias (diagonal trend) of the residuals; and convergence issues were faced in statistical analyses. Robust methods were explored but fixing *n* at 500,000 observations was ultimately the most feasible solution. The assumptions were better satisfied by this alteration and it did not changed the conclusions from the ANOVA results.]: 
+
+\begin{enumerate}
+\item{The imbalance ratio (IR), quantifying the severity of class imbalance. For all simulation studies the same levels for imbalance were used, those were balanced (IR = 1:1.2\footnote{The IR of 1:1.2 rather than 1:1.5 was selected to represent the balanced scenarios to account for the simulation variability caused by random sampling, ensuring that the IR of the actual simulated confusion matrices remained below 1:1.5.}), mild \mbox{(IR = 1:3),} severe (IR = 1:30), and extreme (IR = 1:300). Note that the ratio was held constant between all pairs of minority-majority classes, with no imbalance within each type.}
+\item{The number of minority classes (nMIN), quantifying the ratio between minority and majority classes, thereby indicating which class composition was simulated. In studies A, B, and C all three types of class compositions were used, those were multi-majority (nMIN = 1), mixed (nMIN = 2), and multi-minority (nMIN = 3). In simulation study D only scenarios with mixed class compositions were simulated (nMIN = 2).}
+\item{The type of misclassification (MISCL) quantifying the allocation pattern: This factor was different for each simulation study and will be provided per study in Simulation Specifics.} 
+\end{enumerate}
+
+\noindent 
+Given the number of factor levels of IR (4), nMIN (1 or 3), and MISCL (2, 3, or 9), the number of unique $\mathbf{P}$s were between 24 and 36 for each study. Instead of providing all $\mathbf{P}$s explicitly, a formula was used to automatically calculate $\mathbf{P}$. This formula can be used in future studies with different values for the aforementioned factors and the number of classes ($k$). In more detail, $\mathbf{P}$ is calculated by the matrix multiplication of $\mathbf{M}$ and $\mathbf{H}$. $\mathbf{M}$ is the misclassification matrix which incorporates the factor MISCL. $\mathbf{M}$ shows how much each class was proportionally misclassified and to which class the misclassified instances were assigned. The $\mathbf{M}$ matrices for each simulation study are provided and explained in the section Simulation Specifics. In general terms, $\mathbf{M}$ is a $k \times k$ matrix with elements $m_{ij}$ $\forall i, j \in \{1, 2, \ldots, k\}$ defined as:
+$$
+\resizebox{\linewidth}{!}{$\operatorname{\textbf{M}} = \begin{bmatrix} m_{11} & \dots & m_{14}\\[3.1pt] \vdots & \ddots & \vdots\\[3.1pt] m_{41} & \dots & m_{44} \end{bmatrix} = \begin{matrix}\begin{cases} i = j & : m_{ii} \text{ is the proportion of correctly  classified instances of class } i \\ i \ne j & : m_{ij} \text{ is the proportion of misclassified instances of class } i \text{ as class } j \end{cases}\end{matrix}.$}
+$$
+$\mathbf{H}$ is a hypothetical probability matrix with perfect classification based on the factors IR, nMIN, and on $k$. $\mathbf{H}$ is a $k \times k$ diagonal matrix with the 'maximum attainable probability' of the minority classes ($MAP_{min}$) and the majority classes ($MAP_{maj}$) on the diagonal. Specifically, $\mathbf{H}$ with elements $h_{ij} \forall i, j \in \{1, 2, \ldots, k\}$ is defined as:
+$$
+\resizebox{\linewidth}{!}{$\operatorname{\textbf{H}} =\begin{bmatrix}h_{11} & 0 & 0 & 0 \\0 & h_{22} & 0 & 0\\ 0 & 0 & h_{33} & 0\\ 0 & 0 & 0 & h_{44}\end{bmatrix}= \begin{matrix}\begin{cases} i = j \land i \leq\ \text{nMIN} & : h_{ij} = MAP_{min} = (nMIN + ( k - nMIN )/IR)^{-1} \\ i = j \land i > \text{nMIN} & : h_{ij} = MAP_{maj} = \frac{MAP_{min}}{IR} \\ i \ne j & : h_{ij} = 0\end{cases}\end{matrix}.$}
+$$
+
+In the example with four classes, where the misclassification type represents the partial (50\%) misclassification of a majority class (class 4) falsely predicted as a minority class \mbox{(class 1),} the imbalance ratio is 1:3, and the number of minority classes is 2, the maximum attainable probability of the minority classes and the majority classes are respectively calculated as follows: \mbox{$MAP_{min} = (2 + ( 4 - 2 )/\frac{1}{3})^{-1} = \frac{1}{8}$} and \mbox{$MAP_{maj} = \frac{1/8}{1/3} = \frac{3}{8}$.} Consequently, the probability matrix $\textbf{P}$ (predicted against observed) in this example would be:
+$$ 
+\renewcommand{\arraystretch}{.8}\textbf{P} = \textbf{M}\cdot\textbf{H} =
+\begin{bmatrix}
+0 & 0 & 0 & 0.5 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+1 & 0 & 0 & 0.5
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+\frac{1}{8} & 0 & 0 & 0 \\
+0 & \frac{1}{8} & 0 & 0 \\
+0 & 0 & \frac{3}{8} & 0 \\
+0 & 0 & 0 & \frac{3}{8}
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 & 0 & 0 & 0.5 \cdot \frac{3}{8} \\
+0 & \frac{1}{8} & 0 & 0 \\
+0 & 0 & \frac{3}{8} & 0 \\
+\frac{1}{8} & 0 & 0 & 0.5 \cdot \frac{3}{8}
+\end{bmatrix}.
+$$
+\indent Based on the calculated probability matrices, confusion matrix $\mathbf{C}$ was simulated. The $\mathbf{C}$s were generated by sampling $500{,}000$ observations from a multinomial distribution based on the corresponding $\mathbf{P}$. Thus, $\mathbf{C}$ is the confusion matrix with observations counts rather than probabilities, where $c_{ij}$ approximately equals $p_{ij}\cdot500{,}000$. This simulation process was replicated 100 times for each scenario represented by $\mathbf{P}$. If, by chance, some of the confusion matrices were identical, duplicates were replaced by new generated matrices until all $\mathbf{C}$s were unique. In order to simulate 100 unique matrices for scenarios with extreme class imbalance, it was necessary to sample a relatively large number of observations for each $\mathbf{P}$ to ensure the actual imbalance ratio of the simulated matrices approximately matched with the intended imbalance ratio of 1:300. The evaluation metrics were applied to all $\mathbf{C}$s, and their scores were statistically compared within each simulation study. 
+
+### Simulation Specifics
+#### Study A. 
+In study A, MISCL represented the three types of random classification outcomes based on three hypothetical random classifiers: all to majority, equal, and proportional. $\mathbf{M}$ could only be defined for the scenarios with all to majority ($\mathbf{M}_{1}$) and equal ($\mathbf{M}_{2}$) random classification outcomes. The $\mathbf{M}$s were respectively:
+$$
+\renewcommand{\arraystretch}{.8} \textbf{M}_{1} = \left[\begin{array}{cccc} 
+0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 \\
+1 & 1 & 1 & 1
+\end{array} \right], 
+\renewcommand{\arraystretch}{.8} \quad\textbf{M}_{2} = \left[\begin{array}{cccc} 
+.25 & .25 & .25 & .25 \\
+.25 & .25 & .25 & .25 \\
+.25 & .25 & .25 & .25 \\
+.25 & .25 & .25 & .25
+\end{array} \right].
+$$
+In scenarios with random proportional classification outcomes, $\mathbf{P}$ could be derived directly from $\mathbf{H}$ without involvement of $\mathbf{M}$. Specifically, the elements of $\mathbf{P}$ were defined as $p_{ij} = h_{ii} · h_{jj}$, where $h_{ii}$ and $h_{jj}$ represents the probability of the actual class $i$ and predicted class $j$, respectively. Thus, in the scenario where imbalance ratio is 1:3, the number of minority classes is 2, $\mathbf{H}$ and $\mathbf{P}$ would be:
+$$
+\renewcommand{\arraystretch}{.8}
+\textbf{H} = \left[\begin{array}{cccc} 
+\frac{1}{8} & 0 & 0 & 0 \\
+0 & \frac{1}{8} & 0 & 0\\ 
+0 & 0 & \frac{3}{8} & 0\\ 
+0 & 0 & 0 & \frac{3}{8}
+\end{array}\right], \quad
+\textbf{P} = \left[\begin{array}{cccc} 
+\frac{1}{8} \cdot \frac{1}{8} & \frac{1}{8} \cdot \frac{1}{8} & \frac{3}{8} \cdot \frac{1}{8} & \frac{3}{8} \cdot \frac{1}{8} \\
+\frac{1}{8} \cdot \frac{1}{8} & \frac{1}{8} \cdot \frac{1}{8} & \frac{3}{8} \cdot \frac{1}{8} & \frac{3}{8} \cdot \frac{1}{8} \\
+\frac{1}{8} \cdot \frac{3}{8} & \frac{1}{8} \cdot \frac{3}{8} & \frac{3}{8} \cdot \frac{3}{8} & \frac{3}{8} \cdot \frac{3}{8} \\
+\frac{1}{8} \cdot \frac{3}{8} & \frac{1}{8} \cdot \frac{3}{8} & \frac{3}{8} \cdot \frac{3}{8} & \frac{3}{8} \cdot \frac{3}{8}
+\end{array} \right].
+$$
+With the three random allocation patterns based on MISCL, and by including all levels for IR and nMIN, 36 different scenarios were defined in study A.
+
+#### Study B.
+There were two levels of MISCL defined in study B. It was either a partial (50%) or complete (100%) misclassification of a minority class, where the misclassified instances (always class 1) were assigned to a majority class (always class 4). $\mathbf{M}_{1}$ represented partial misclassification and $\mathbf{M}_{2}$ represented complete misclassification. Specifically, the $\mathbf{M}$s were: 
+$$
+\renewcommand{\arraystretch}{.8} \textbf{M}_{1} = \left[\begin{array}{cccc} 
+.5 & 0 & 0 & 0 \\ 
+0 & 1 & 0 & 0 \\ 
+0 & 0 & 1 & 0 \\ 
+.5 & 0 & 0 & 1
+\end{array} \right],
+\renewcommand{\arraystretch}{.8} \quad\textbf{M}_{2} = \left[\begin{array}{cccc} 
+0 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+1 & 0 & 0 & 1
+\end{array} \right].
+$$
+As a result of the combination of all levels for MISCL, IR, and nMIN, 24 different scenarios were defined in study B. 
+
+#### Study C.
+In study C, the levels of MISCL represented either partial (50%) or complete (100%) misclassification of a majority class, where the misclassified instances (always class 4) were assigned to a minority class (always class 1). $\mathbf{M}_{1}$ represented partial misclassification and $\mathbf{M}_{2}$ represented complete misclassification. Specifically, the $\mathbf{M}$s were: 
+$$
+\renewcommand{\arraystretch}{.8} \textbf{M}_{1} = \left[\begin{array}{cccc} 
+1 & 0 & 0 & .5 \\ 
+0 & 1 & 0 & 0 \\ 
+0 & 0 & 1 & 0 \\ 
+0 & 0 & 0 & .5
+\end{array} \right],
+\renewcommand{\arraystretch}{.8} \quad\textbf{M}_{2} = \left[\begin{array}{cccc} 
+1 & 0 & 0 & 1 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0
+\end{array} \right].
+$$
+Similar to study A and B, all levels for IR and nMIN were included. Consequently, study C consisted of 24 different scenarios.
+
+#### Study D.
+In study D, MISCL consisted of partial misclassification (50\%) of both a minority and a majority class, falsely assigned to one of the three other classes in distinct combinations. Only matrices with two minority and two majority classes \mbox{(nMIN = 2)} were considered in order to maximize the number of possible combinations to allocate the misclassifications. Note that, in each scenario the proportion of correctly classified observations within each class (i.e., recall$_{1, \ldots, k}$) was constant. Under these circumstances, there were nine possible combinations resulting in nine $\mathbf{M}$s. The $\mathbf{M}$s were as follows:
+$$
+\begin{gathered}
+\renewcommand{\arraystretch}{.8} \textbf{M}_{1} = \left[\begin{array}{cccc} 
+.5 & 0 & 0 & 0 \\
+.5 & 1 & 0 & 0 \\
+0 & 0 & 1 & .5 \\
+0 & 0 & 0 & .5
+\end{array} \right],
+\renewcommand{\arraystretch}{.8} \quad\textbf{M}_{2} = \left[\begin{array}{cccc} 
+.5 & 0 & 0 & 0 \\
+.5 & 1 & 0 & .5 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & .5
+\end{array} \right],
+\renewcommand{\arraystretch}{.8} \quad\textbf{M}_{3} = \left[\begin{array}{cccc} 
+.5 & 0 & 0 & .5 \\
+.5 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & .5
+\end{array} \right],\end{gathered} \\
+$$$$
+\begin{gathered}\renewcommand{\arraystretch}{.8} \textbf{M}_{4} = \left[\begin{array}{cccc} 
+.5 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+.5 & 0 & 1 & .5 \\
+0 & 0 & 0 & .5
+\end{array} \right],
+\renewcommand{\arraystretch}{.8} \quad\textbf{M}_{5} = \left[\begin{array}{cccc} 
+.5 & 0 & 0 & 0 \\
+0 & 1 & 0 & .5 \\
+.5 & 0 & 1 & 0 \\
+0 & 0 & 0 & .5
+\end{array} \right],
+\renewcommand{\arraystretch}{.8} \quad\textbf{M}_{6} = \left[\begin{array}{cccc} 
+.5 & 0 & 0 & .5 \\
+0 & 1 & 0 & 0 \\
+.5 & 0 & 1 & 0 \\
+0 & 0 & 0 & .5
+\end{array} \right],\end{gathered} \\
+$$$$
+\begin{gathered}\renewcommand{\arraystretch}{.8} \textbf{M}_{7} = \left[\begin{array}{cccc} 
+.5 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & .5 \\
+.5 & 0 & 0 & .5
+\end{array} \right],
+\renewcommand{\arraystretch}{.8} \quad\textbf{M}_{8} = \left[\begin{array}{cccc} 
+.5 & 0 & 0 & 0 \\
+0 & 1 & 0 & .5 \\
+0 & 0 & 1 & 0 \\
+.5 & 0 & 0 & .5
+\end{array} \right],
+\renewcommand{\arraystretch}{.8} \quad\textbf{M}_{9} = \left[\begin{array}{cccc} 
+.5 & 0 & 0 & .5 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+.5 & 0 & 0 & .5
+\end{array} \right].\end{gathered}
+$$
+\noindent With these nine allocation patterns based on MISCL and including all IR levels, 36 different scenarios were defined in study D. 
+
+## Statistical Analysis
+A mixed factorial ANOVA (i.e., split-plot design; not mixed-effects design) used to test whether or not the metrics were influenced by the severity of class imbalance (IR), class composition (nMIN), the type of misclassification (MISCL), or by an interaction of these, and if that influence was different between the four metrics (METRIC). Note that METRIC was included as a \mbox{within-subject} factor. Therefore, study A was analyzed with a 4\mbox{\times}3\mbox{\times}3\mbox{\times}4, B and C with a 4\mbox{\times}3\mbox{\times}2\mbox{\times}4, and D with a 4\mbox{\times}1\mbox{\times}9\mbox{\times}4 mixed-model design. For statistical significance, a maximum threshold of *p* = .001 was used, but findings were described based on the magnitude of the standardized estimate of the effect sizes, given the sensitivity of *p* values to sample size. The generalized version of eta-squared ($\eta_g^2$, Olejnik & Algina, 2003) was chosen as an effect size measure given its suitability for mixed-designs [@Bakeman2005; @Olejnik2003] and its ability to differentiate between intrinsic and extrinsic factors^[Intrinsic factors are also referred to as observed [@Afex2013] or measured [@Bakeman2005; @Olejnik2003] factors. Extrinsic factors are also referred to as manipulated factors [@Bakeman2005; @Olejnik2003].] [@Kroes2023]. The latter is important because METRIC should be treated as an intrinsic within-subject factor, thereby retaining its variance in the denominator of $\eta_g^2$ for all effects that include METRIC. The same thresholds for the interpretation of the magnitude of $\eta_g^2$ can be applied as to $\eta^2$ [@Olejnik2003]; *small* $\ge$ .01, *moderate* $\ge$ .06, *large* $\ge$ .13 [@Field2013]. This thesis primarily focused on describing effects of at least moderate magnitude. However, smaller effects were discussed when they highlighted metric-specific insights or were relevant in relation to the existing literature. Furthermore, given the interest in the characteristics and the suitability of the four metrics, only effects where METRIC was involved were presented. 
+
+## Software and Technical Details
+R [version 4.2.3, @RCoreTeam2024] was used as statistical software to implement the metrics, execute the simulations and analyze the results^[Source code is available at: https://github.com/Louisuzan/metrics-multiclass-imbalanced-classification.]. Metric implementations were slightly adapted to address division by (near-)zero issues, by replacing undefined results (NaN) with zeros in problematic calculations. The R-package *stats* was used to generate data from a multinomial distribution [version 4.2.3, @RCoreTeam2024]. The seed used before every simulation was set to "5". The R function aov_ez() from the package *Afex* [version 1.3-0, @Afex2013] was used to execute the mixed factorial ANOVAs. Default settings were adopted. These included Type III sum of squares, the sphericity correction of Greenhouse-Geisser ($\hat{\epsilon}$) on degrees of freedom and the $\eta_g^2$ as effect size measure. In order to retrieve meaningful  $\eta_g^2$ values, METRIC needed to be specified as an observed factor [@Afex2013], which indicates it is an intrinsic factor. Hence, METRIC was always specified as both a within-subject factor and an observed factor, whereas IR, nMIN, and MISCL were specified as between-subject factors.

@@ -1,0 +1,2 @@
+# Results
+The results are presented separately for each simulation study, with findings organized in descending order according to the effect size values observed in each study. Note that only effects involving METRIC are presented. 

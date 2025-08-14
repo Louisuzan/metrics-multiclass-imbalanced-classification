@@ -1,0 +1,1944 @@
+@software{Afex2013,
+  type = {Computer software},
+  title = {Afex: {{Analysis}} of Factorial Experiments},
+  author = {Singmann, Henrik and Bolker, Ben and Westfall, Jake and Aust, Frederik and Ben-Shachar, Mattan S.},
+  date = {2024},
+  doi = {https://CRAN.R-project.org/package=afex},
+  version = {1.4-1}
+}
+
+@inproceedings{Agrawal2015,
+  title = {{{SCUT}}: {{Multi-class}} Imbalanced Data Classification Using {{SMOTE}} and Cluster-Based Undersampling},
+  booktitle = {Proceedings of the 7th {{International Joint Conference}} on {{Knowledge Discovery}}, {{Knowledge Engineering}} and {{Knowledge Management}}, {{SCITEPRESS}} - {{Science}} and and {{Technology Publications}}},
+  author = {Agrawal, Astha and Viktor, Herna L. and Paquet, Eric},
+  date = {2015},
+  pages = {226--234},
+  publisher = {{SCITEPRESS - Science and and Technology Publications}},
+  location = {Lisbon, Portugal},
+  doi = {10.5220/0005595502260234}
+}
+
+@incollection{Alejo2013,
+  title = {Assessments Metrics for Multi-Class Imbalance Learning: {{A}} Preliminary Study},
+  booktitle = {Lecture Notes in Computer Science: {{Vol}}. 7914. {{Pattern}} Recognition},
+  author = {Alejo, R. and Antonio, J. A. and Valdovinos, R. M. and Pacheco-Sánchez, J. H.},
+  editor = {Carrasco-Ochoa, J. A. and Martínez-Trinidad, J. F. and Rodríguez, J. S. and family=Baja, given=G. S., prefix=di, useprefix=false},
+  date = {2013},
+  pages = {335--343},
+  publisher = {Springer},
+  location = {Berlin, Heidelberg},
+  doi = {10.1007/978-3-642-38989-4_34},
+  isbn = {978-3-642-38988-7 978-3-642-38989-4}
+}
+
+@book{APA7,
+  title = {Publication Manual of the {{American Psychological Association}}},
+  author = {American Psychological Association},
+  date = {2020},
+  edition = {7},
+  doi = {10.1037/0000165-000},
+  isbn = {978-1-4338-3216-1}
+}
+
+@article{Bakeman2005,
+  title = {Recommended Effect Size Statistics for Repeated Measures Designs},
+  author = {Bakeman, Roger},
+  date = {2005-08},
+  journaltitle = {Behavior Research Methods},
+  volume = {37},
+  number = {3},
+  pages = {379--384},
+  publisher = {{Springer Science and Business Media LLC}},
+  issn = {1554-351X, 1554-3528},
+  doi = {10.3758/bf03192707}
+}
+
+@article{Ballabio2018,
+  title = {Multivariate Comparison of Classification Performance Measures},
+  author = {Ballabio, Davide and Grisoni, Francesca and Todeschini, Roberto},
+  date = {2018-03},
+  journaltitle = {Chemometrics and Intelligent Laboratory Systems},
+  volume = {174},
+  pages = {33--44},
+  publisher = {Elsevier BV},
+  issn = {0169-7439},
+  doi = {10.1016/j.chemolab.2017.12.004}
+}
+
+@article{Bekkar2013,
+  title = {Evaluation Measures for Models Assessment over Imbalanced Data Sets},
+  author = {Bekkar, Mohamed and Djemaa, Hassiba Kheliouane and Alitouche, Taklit Akrouf},
+  date = {2013},
+  journaltitle = {Journal of Information Engineering and Applications},
+  volume = {3},
+  number = {10},
+  pages = {27--38}
+}
+
+@article{Beque2017,
+  title = {Extreme Learning Machines for Credit Scoring: {{An}} Empirical Evaluation},
+  author = {Bequé, Artem and Lessmann, Stefan},
+  date = {2017-11},
+  journaltitle = {Expert Systems with Applications},
+  volume = {86},
+  pages = {42--53},
+  publisher = {Elsevier BV},
+  issn = {0957-4174},
+  doi = {10.1016/j.eswa.2017.05.050}
+}
+
+@article{Bizhang2018,
+  title = {An Empirical Comparison on State-of-the-Art Multi-Class Imbalance Learning Algorithms and a New Diversified Ensemble Learning Scheme},
+  author = {Bi, Jingjun and Zhang, Chongsheng},
+  date = {2018-10},
+  journaltitle = {Knowledge-Based Systems},
+  volume = {158},
+  pages = {81--93},
+  publisher = {Elsevier BV},
+  issn = {0950-7051},
+  doi = {10.1016/j.knosys.2018.05.037}
+}
+
+@article{Blagus2015,
+  title = {Joint Use of Over- and under-Sampling Techniques and Cross-Validation for the Development and Assessment of Prediction Models},
+  author = {Blagus, Rok and Lusa, Lara},
+  date = {2015-12},
+  journaltitle = {BMC Bioinformatics},
+  volume = {16},
+  number = {1},
+  publisher = {{Springer Science and Business Media LLC}},
+  issn = {1471-2105},
+  doi = {10.1186/s12859-015-0784-9}
+}
+
+@article{Boughorbel2017,
+  title = {Optimal Classifier for Imbalanced Data Using {{Matthews}} Correlation Coefficient Metric},
+  author = {Boughorbel, Sabri and Jarray, Fethi and El-Anbari, Mohammed},
+  editor = {Zou, Quan},
+  date = {2017-06-02},
+  journaltitle = {PLoS ONE},
+  shortjournal = {PLoS ONE},
+  volume = {12},
+  number = {6},
+  pages = {Article e0177678},
+  publisher = {Public Library of Science (PLoS)},
+  issn = {1932-6203},
+  doi = {10.1371/journal.pone.0177678}
+}
+
+@incollection{Branco2017,
+  title = {Relevance-Based Evaluation Metrics for Multi-Class Imbalanced Domains},
+  booktitle = {Lecture Notes in Computer Science: {{Vol}}. 10234. {{Advances}} in Knowledge Discovery and Data Mining},
+  author = {Branco, Paula and Torgo, Luís and Ribeiro, Rita P.},
+  editor = {Kim, J. and Shim, K. and Cao, L and Lee, J. G. and Lin, X and Moon, Y. S.},
+  date = {2017},
+  pages = {698--710},
+  publisher = {Springer},
+  location = {Cham},
+  issn = {0302-9743, 1611-3349},
+  doi = {10.1007/978-3-319-57454-7_54},
+  isbn = {978-3-319-57453-0 978-3-319-57454-7}
+}
+
+@article{Brown2018,
+  title = {Classifiers and Their Metrics Quantified},
+  author = {Brown, J. B.},
+  date = {2018-01},
+  journaltitle = {Molecular Informatics},
+  volume = {37},
+  pages = {Article 1700127},
+  publisher = {Wiley},
+  issn = {1868-1743, 1868-1751},
+  doi = {10.1002/minf.201700127}
+}
+
+@article{Buda2018,
+  title = {A Systematic Study of the Class Imbalance Problem in Convolutional Neural Networks},
+  author = {Buda, Mateusz and Maki, Atsuto and Mazurowski, Maciej A.},
+  date = {2018-10},
+  journaltitle = {Neural Networks},
+  volume = {106},
+  pages = {249--259},
+  publisher = {Elsevier BV},
+  issn = {0893-6080},
+  doi = {10.1016/j.neunet.2018.07.011}
+}
+
+@inproceedings{Caruana2004,
+  title = {Data Mining in Metric Space: {{An}} Empirical Analysis of Supervised Learning Performance Criteria},
+  booktitle = {Proceedings of the Tenth {{ACM SIGKDD}} International Conference on {{Knowledge}} Discovery and Data Mining, {{ACM}}},
+  author = {Caruana, Rich and Niculescu-Mizil, Alexandru},
+  date = {2004-08-22},
+  pages = {69--78},
+  publisher = {ACM},
+  location = {Seattle WA USA},
+  doi = {10.1145/1014052.1014063}
+}
+
+@article{Chang2017,
+  title = {Multiple-Class Classification: {{Ordinal}} and Categorical Labels},
+  author = {Chang, Yuan-chin Ivan},
+  date = {2017-11-26},
+  journaltitle = {Communications in Statistics - Simulation and Computation},
+  volume = {46},
+  number = {10},
+  pages = {7561--7581},
+  publisher = {Informa UK Limited},
+  issn = {0361-0918, 1532-4141},
+  doi = {10.1080/03610918.2016.1242732}
+}
+
+@article{Chen2016,
+  title = {Financial Credit Risk Assessment: A Recent Review},
+  author = {Chen, Ning and Ribeiro, Bernardete and Chen, An},
+  date = {2016-01},
+  journaltitle = {Artificial Intelligence Review},
+  shortjournal = {Artif Intell Rev},
+  volume = {45},
+  pages = {1--23},
+  publisher = {{Springer Science and Business Media LLC}},
+  issn = {0269-2821, 1573-7462},
+  doi = {10.1007/s10462-015-9434-x}
+}
+
+@article{Chicco2017,
+  title = {Ten Quick Tips for Machine Learning in Computational Biology},
+  author = {Chicco, Davide},
+  date = {2017-12},
+  journaltitle = {BioData Mining},
+  volume = {10},
+  pages = {Article 35},
+  publisher = {{Springer Science and Business Media LLC}},
+  issn = {1756-0381},
+  doi = {10.1186/s13040-017-0155-3}
+}
+
+@article{Chicco2020,
+  title = {The Advantages of the {{Matthews}} Correlation Coefficient ({{MCC}}) over {{F1}} Score and Accuracy in Binary Classification Evaluation},
+  author = {Chicco, Davide and Jurman, Giuseppe},
+  date = {2020-12},
+  journaltitle = {BMC Genomics},
+  volume = {21},
+  pages = {Article 6},
+  publisher = {{Springer Science and Business Media LLC}},
+  issn = {1471-2164},
+  doi = {10.1186/s12864-019-6413-7}
+}
+
+@article{Ching-Hong2021,
+  title = {A Robust Effect Size Measure {{{\mkbibemph{A}}}}{\mkbibemph{{\textsubscript{w}}}} for {{MANOVA}} with Non-Normal and Non-Homogenous Data},
+  author = {Ching-Hong Li, Johnson and Nesca, Marcello and Michael Waisman, Rory and Cheng, Yongtian and Man Chung Tze, Virginia},
+  date = {2021-09},
+  journaltitle = {Methodological Innovations},
+  volume = {14},
+  number = {3},
+  publisher = {SAGE Publications},
+  issn = {2059-7991, 2059-7991},
+  doi = {10.1177/20597991211055949}
+}
+
+@article{Collell2018,
+  title = {A Simple Plug-in Bagging Ensemble Based on Threshold-Moving for Classifying Binary and Multiclass Imbalanced Data},
+  author = {Collell, Guillem and Prelec, Drazen and Patil, Kaustubh R.},
+  date = {2018-01},
+  journaltitle = {Neurocomputing},
+  volume = {275},
+  pages = {330--340},
+  publisher = {Elsevier BV},
+  issn = {0925-2312},
+  doi = {10.1016/j.neucom.2017.08.035}
+}
+
+@article{Cribari-Neto2010,
+  title = {Beta {{Regression}} in {{{\mkbibemph{R}}}}},
+  author = {Cribari-Neto, Francisco and Zeileis, Achim},
+  date = {2010},
+  journaltitle = {Journal of Statistical Software},
+  shortjournal = {J. Stat. Soft.},
+  volume = {34},
+  number = {2},
+  pages = {1--24},
+  publisher = {Foundation for Open Access Statistic},
+  issn = {1548-7660},
+  doi = {10.18637/jss.v034.i02}
+}
+
+@article{Daskalaki2006,
+  title = {Evaluation of Classifiers for an Uneven Class Distribution Problem},
+  author = {Daskalaki, Sophia and Kopanas, Ioannis and Avouris, Nikolaos},
+  date = {2006-06},
+  journaltitle = {Applied Artificial Intelligence},
+  volume = {20},
+  number = {5},
+  pages = {381--417},
+  publisher = {Informa UK Limited},
+  issn = {0883-9514, 1087-6545},
+  doi = {10.1080/08839510500313653}
+}
+
+@article{Delgado2019,
+  title = {Why {{Cohen}}’s {{Kappa}} Should Be Avoided as Performance Measure in Classification},
+  author = {Delgado, Rosario and Tibau, Xavier-Andoni},
+  editor = {Gu, Quanquan},
+  date = {2019-09-26},
+  journaltitle = {PLoS ONE},
+  shortjournal = {PLoS ONE},
+  volume = {14},
+  number = {9},
+  pages = {Article e0222916},
+  publisher = {Public Library of Science (PLoS)},
+  issn = {1932-6203},
+  doi = {10.1371/journal.pone.0222916}
+}
+
+@article{Du2017,
+  title = {Post-Boosting of Classification Boundary for Imbalanced Data Using Geometric Mean},
+  author = {Du, Jie and Vong, Chi-Man and Pun, Chi-Man and Wong, Pak-Kin and Ip, Weng-Fai},
+  date = {2017-12},
+  journaltitle = {Neural Networks},
+  volume = {96},
+  pages = {101--114},
+  publisher = {Elsevier BV},
+  issn = {0893-6080},
+  doi = {10.1016/j.neunet.2017.09.004}
+}
+
+@inproceedings{Espindola2005,
+  title = {On Extending {{F-measure}} and {{G-mean}} Metrics to Multi-Class Problems},
+  booktitle = {{{WIT Transactions}} on {{Information}} and {{Communication Technologies}}},
+  author = {Espíndola, R.P. and Ebecken, N.F.F.},
+  date = {2005-05-04},
+  volume = {35},
+  pages = {25--34},
+  publisher = {WIT Press},
+  location = {Skiathos, Greece},
+  issn = {1743-3517},
+  doi = {10.2495/data050031}
+}
+
+@article{Feng2019,
+  title = {New Margin-Based Subsampling Iterative Technique in Modified Random Forests for Classification},
+  author = {Feng, Wei and Dauphin, Gabriel and Huang, Wenjiang and Quan, Yinghui and Liao, Wenzhi},
+  date = {2019-10},
+  journaltitle = {Knowledge-Based Systems},
+  volume = {182},
+  pages = {Article 104845},
+  publisher = {Elsevier BV},
+  issn = {0950-7051},
+  doi = {10.1016/j.knosys.2019.07.016}
+}
+
+@article{Ferguson2009,
+  title = {An Effect Size Primer: {{A}} Guide for Clinicians and Researchers.},
+  author = {Ferguson, Christopher J.},
+  date = {2009-10},
+  journaltitle = {Professional Psychology: Research and Practice},
+  volume = {40},
+  number = {5},
+  pages = {532--538},
+  publisher = {American Psychological Association (APA)},
+  issn = {1939-1323, 0735-7028},
+  doi = {10.1037/a0015808}
+}
+
+@article{Fernandes2019,
+  title = {Evolutionary Inversion of Class Distribution in Overlapping Areas for Multi-Class Imbalanced Learning},
+  author = {Fernandes, Everlandio R.Q. and family=Carvalho, given=Andre C.P.L.F., prefix=de, useprefix=true},
+  date = {2019-08},
+  journaltitle = {Information Sciences},
+  volume = {494},
+  pages = {141--154},
+  publisher = {Elsevier BV},
+  issn = {0020-0255},
+  doi = {10.1016/j.ins.2019.04.052}
+}
+
+@article{Fernandez-Navarro2011,
+  title = {A Dynamic Over-Sampling Procedure Based on Sensitivity for Multi-Class Problems},
+  author = {Fernández-Navarro, Francisco and Hervás-Martínez, César and Antonio Gutiérrez, Pedro},
+  date = {2011-08},
+  journaltitle = {Pattern Recognition},
+  volume = {44},
+  number = {8},
+  pages = {1821--1833},
+  publisher = {Elsevier BV},
+  issn = {0031-3203},
+  doi = {10.1016/j.patcog.2011.02.019}
+}
+
+@article{Fernandez2008,
+  title = {A Study of the Behaviour of Linguistic Fuzzy Rule Based Classification Systems in the Framework of Imbalanced Data-Sets},
+  author = {Fernández, Alberto and García, Salvador and family=Jesus, given=María José, prefix=del, useprefix=true and Herrera, Francisco},
+  date = {2008-09},
+  journaltitle = {Fuzzy Sets and Systems},
+  volume = {159},
+  number = {18},
+  pages = {2378--2398},
+  publisher = {Elsevier BV},
+  issn = {0165-0114},
+  doi = {10.1016/j.fss.2007.12.023}
+}
+
+@article{Fernandez2009,
+  title = {Hierarchical Fuzzy Rule Based Classification Systems with Genetic Rule Selection for Imbalanced Data-Sets},
+  author = {Fernández, Alberto and family=Jesus, given=María José, prefix=del, useprefix=true and Herrera, Francisco},
+  date = {2009-03},
+  journaltitle = {International Journal of Approximate Reasoning},
+  volume = {50},
+  number = {3},
+  pages = {561--577},
+  publisher = {Elsevier BV},
+  issn = {0888-613X},
+  doi = {10.1016/j.ijar.2008.11.004}
+}
+
+@article{Fernandez2010,
+  title = {On the 2-Tuples Based Genetic Tuning Performance for Fuzzy Rule Based Classification Systems in Imbalanced Data-Sets},
+  author = {Fernández, Alberto and family=Jesus, given=María José, prefix=del, useprefix=true and Herrera, Francisco},
+  date = {2010-04},
+  journaltitle = {Information Sciences},
+  volume = {180},
+  number = {8},
+  pages = {1268--1291},
+  publisher = {Elsevier BV},
+  issn = {0020-0255},
+  doi = {10.1016/j.ins.2009.12.014}
+}
+
+@incollection{Fernandez2010a,
+  title = {Multi-Class Imbalanced Data-Sets with Linguistic Fuzzy Rule Based Classification Systems Based on Pairwise Learning},
+  booktitle = {Lecture Notes in Computer Science: {{Vol}}. 6178. {{Computational}} Intelligence for Knowledge-Based Systems Design.},
+  author = {Fernández, Alberto and family=Jesus, given=Mara José, prefix=del, useprefix=true and Herrera, Francisco},
+  editor = {Hüllermeier, E. and Kruse, R. and Hoffmann, F.},
+  date = {2010},
+  pages = {89--98},
+  publisher = {Springer},
+  location = {Berlin, Heidelberg},
+  issn = {0302-9743, 1611-3349},
+  doi = {10.1007/978-3-642-14049-5_10},
+  isbn = {978-3-642-14048-8 978-3-642-14049-5},
+  annotation = {IPMU2010}
+}
+
+@article{Fernandez2013,
+  title = {Analysing the Classification of Imbalanced Data-Sets with Multiple Classes: {{Binarization}} Techniques and Ad-Hoc Approaches},
+  author = {Fernández, Alberto and López, Victoria and Galar, Mikel and family=Jesus, given=María José, prefix=del, useprefix=true and Herrera, Francisco},
+  date = {2013-04},
+  journaltitle = {Knowledge-Based Systems},
+  volume = {42},
+  pages = {97--110},
+  publisher = {Elsevier BV},
+  issn = {0950-7051},
+  doi = {10.1016/j.knosys.2013.01.018}
+}
+
+@article{Ferrari2004,
+  title = {Beta Regression for Modelling Rates and Proportions},
+  author = {Ferrari, Silvia and Cribari-Neto, Francisco},
+  date = {2004-08},
+  journaltitle = {Journal of Applied Statistics},
+  volume = {31},
+  number = {7},
+  pages = {799--815},
+  publisher = {Informa UK Limited},
+  issn = {0266-4763, 1360-0532},
+  doi = {10.1080/0266476042000214501}
+}
+
+@article{Ferri2009,
+  title = {An Experimental Comparison of Performance Measures for Classification},
+  author = {Ferri, C. and Hernández-Orallo, J. and Modroiu, R.},
+  date = {2009-01},
+  journaltitle = {Pattern Recognition Letters},
+  volume = {30},
+  number = {1},
+  pages = {27--38},
+  publisher = {Elsevier BV},
+  issn = {0167-8655},
+  doi = {10.1016/j.patrec.2008.08.010}
+}
+
+@book{Field2013,
+  title = {Discovering Statistics Using {{{\mkbibemph{IBM SPSS}}}} Statistics: {{And}} Sex and Drugs and `n' Roll},
+  author = {Field, Andy},
+  date = {2013},
+  edition = {4},
+  publisher = {SAGE Publications},
+  isbn = {978-1-4462-4917-8}
+}
+
+@article{Fritz2012,
+  title = {Effect Size Estimates: {{Current}} Use, Calculations, and Interpretation.},
+  author = {Fritz, Catherine O. and Morris, Peter E. and Richler, Jennifer J.},
+  date = {2012},
+  journaltitle = {Journal of Experimental Psychology: General},
+  volume = {141},
+  number = {1},
+  pages = {2--18},
+  publisher = {American Psychological Association (APA)},
+  issn = {1939-2222, 0096-3445},
+  doi = {10.1037/a0024338}
+}
+
+@article{Galar2012,
+  title = {A Review on Ensembles for the Class Imbalance Problem: Bagging-, Boosting-, and Hybrid-Based Approaches},
+  author = {Galar, M. and Fernandez, A. and Barrenechea, E. and Bustince, H. and Herrera, F.},
+  date = {2012-07},
+  journaltitle = {IEEE Transactions on Systems, Man, and Cybernetics, Part C (Applications and Reviews)},
+  shortjournal = {IEEE Trans. Syst., Man, Cybern. C},
+  volume = {42},
+  number = {4},
+  pages = {463--484},
+  publisher = {{Institute of Electrical and Electronics Engineers (IEEE)}},
+  issn = {1094-6977, 1558-2442},
+  doi = {10.1109/tsmcc.2011.2161285}
+}
+
+@incollection{Garcia2006,
+  title = {Combined Effects of Class Imbalance and Class Overlap on Instance-Based Classification},
+  booktitle = {Lecture Notes in Computer Science: {{Vol}}. 4224. {{Intelligent}} Data Engineering and Automated Learning – {{IDEAL}} 2006},
+  author = {García, V and {Alejo, R.} and {Sánchez, J. S.} and {Sotoca, J. M.} and {Mollineda, R. A.}},
+  editor = {Corchado, E. and Yin, H. and Botti, V. and Fyfe, C.},
+  date = {2006},
+  series = {Lecture {{Notes}} in {{Computer Science}}},
+  pages = {371--378},
+  publisher = {Springer},
+  location = {Berlin, Heidelberg},
+  doi = {10.1007/11875581_45},
+  isbn = {978-3-540-45485-4 978-3-540-45487-8},
+  annotation = {editor="Corchado, Emilio\\
+and Yin, Hujun\\
+and Botti, Vicente\\
+and Fyfe, Colin",\\
+\\
+booktitle="Intelligent Data Engineering and Automated Learning -- IDEAL 2006",}
+}
+
+@inproceedings{Garcia2009,
+  title = {Index of Balanced Accuracy: {{A}} Performance Measure for Skewed Class Distributions},
+  booktitle = {Lecture Notes in Computer Science: {{Vol}}. 5524. {{Pattern}} Recognition and Image Analysis.},
+  author = {García, V. and Mollineda, R. A. and Sánchez, J. S.},
+  editor = {Araujo, Helder and Mendonça, A. M. and Pinho, A. J. and Torres, M. I.},
+  date = {2009},
+  pages = {441--448},
+  publisher = {Springer},
+  location = {Berlin, Heidelberg},
+  issn = {0302-9743, 1611-3349},
+  doi = {10.1007/978-3-642-02172-5_57},
+  isbn = {978-3-642-02171-8 978-3-642-02172-5}
+}
+
+@article{Garcia2012,
+  title = {On the Effectiveness of Preprocessing Methods When Dealing with Different Levels of Class Imbalance},
+  author = {García, V. and Sánchez, J.S. and Mollineda, R.A.},
+  date = {2012-02},
+  journaltitle = {Knowledge-Based Systems},
+  volume = {25},
+  number = {1},
+  pages = {13--21},
+  publisher = {Elsevier BV},
+  issn = {0950-7051},
+  doi = {10.1016/j.knosys.2011.06.013}
+}
+
+@article{Garcia2018,
+  title = {Dynamic Ensemble Selection for Multi-Class Imbalanced Datasets},
+  author = {García, Salvador and Zhang, Zhong-Liang and Altalhi, Abdulrahman and Alshomrani, Saleh and Herrera, Francisco},
+  date = {2018-06},
+  journaltitle = {Information Sciences},
+  volume = {445--446},
+  pages = {22--37},
+  publisher = {Elsevier BV},
+  issn = {0020-0255},
+  doi = {10.1016/j.ins.2018.03.002}
+}
+
+@article{Gonghuang2012,
+  title = {A {{Kolmogorov}}–{{Smirnov}} Statistic Based Segmentation Approach to Learning from Imbalanced Datasets: {{With}} Application in Property Refinance Prediction},
+  author = {Gong, Rongsheng and Huang, Samuel H.},
+  date = {2012-05},
+  journaltitle = {Expert Systems with Applications},
+  volume = {39},
+  number = {6},
+  pages = {6192--6200},
+  publisher = {Elsevier BV},
+  issn = {0957-4174},
+  doi = {10.1016/j.eswa.2011.12.011}
+}
+
+@article{Gorodkin2004,
+  title = {Comparing Two {{K-category}} Assignments by a {{K-category}} Correlation Coefficient},
+  author = {Gorodkin, J.},
+  date = {2004-12},
+  journaltitle = {Computational Biology and Chemistry},
+  volume = {28},
+  number = {5--6},
+  pages = {367--374},
+  publisher = {Elsevier BV},
+  issn = {1476-9271},
+  doi = {10.1016/j.compbiolchem.2004.09.006}
+}
+
+@article{Haixiang2016,
+  title = {{{BPSO-Adaboost-KNN}} Ensemble Learning Algorithm for Multi-Class Imbalanced Data Classification},
+  author = {Haixiang, Guo and Yijing, Li and Yanan, Li and Xiao, Liu and Jinling, Li},
+  date = {2016-03},
+  journaltitle = {Engineering Applications of Artificial Intelligence},
+  volume = {49},
+  pages = {176--193},
+  publisher = {Elsevier BV},
+  issn = {0952-1976},
+  doi = {10.1016/j.engappai.2015.09.011}
+}
+
+@article{Haixiang2017,
+  title = {Learning from Class-Imbalanced Data: {{Review}} of Methods and Applications},
+  author = {Haixiang, Guo and Yijing, Li and Shang, Jennifer and Mingyun, Gu and Yuanyue, Huang and Bing, Gong},
+  date = {2017-05},
+  journaltitle = {Expert Systems with Applications},
+  volume = {73},
+  pages = {220--239},
+  publisher = {Elsevier BV},
+  issn = {0957-4174},
+  doi = {10.1016/j.eswa.2016.12.035}
+}
+
+@article{Hancock2023,
+  title = {Evaluating Classifier Performance with Highly Imbalanced {{Big Data}}},
+  author = {Hancock, John T. and Khoshgoftaar, Taghi M. and Johnson, Justin M.},
+  date = {2023-04-11},
+  journaltitle = {Journal of Big Data},
+  shortjournal = {J Big Data},
+  volume = {10},
+  pages = {Article 42},
+  publisher = {{Springer Science and Business Media LLC}},
+  issn = {2196-1115},
+  doi = {10.1186/s40537-023-00724-5}
+}
+
+@article{Haque2016,
+  title = {Heterogeneous Ensemble Combination Search Using Genetic Algorithm for Class Imbalanced Data Classification},
+  author = {Haque, Mohammad Nazmul and Noman, Nasimul and Berretta, Regina and Moscato, Pablo},
+  editor = {Kestler, Hans A},
+  date = {2016-01-14},
+  journaltitle = {PLoS ONE},
+  shortjournal = {PLoS ONE},
+  volume = {11},
+  number = {1},
+  pages = {Article e0146116},
+  publisher = {Public Library of Science (PLoS)},
+  issn = {1932-6203},
+  doi = {10.1371/journal.pone.0146116}
+}
+
+@article{Hegarcia2009,
+  title = {Learning from Imbalanced Data},
+  author = {He, Haibo and Garcia, E.A.},
+  date = {2009-09},
+  journaltitle = {IEEE Transactions on Knowledge and Data Engineering},
+  shortjournal = {IEEE Trans. Knowl. Data Eng.},
+  volume = {21},
+  number = {9},
+  pages = {1263--1284},
+  publisher = {{Institute of Electrical and Electronics Engineers (IEEE)}},
+  issn = {1041-4347},
+  doi = {10.1109/tkde.2008.239}
+}
+
+@article{Hezhang2018,
+  title = {A Novel Ensemble Method for Credit Scoring: {{Adaption}} of Different Imbalance Ratios},
+  author = {He, Hongliang and Zhang, Wenyu and Zhang, Shuai},
+  date = {2018-05},
+  journaltitle = {Expert Systems with Applications},
+  volume = {98},
+  pages = {105--117},
+  publisher = {Elsevier BV},
+  issn = {0957-4174},
+  doi = {10.1016/j.eswa.2018.01.012}
+}
+
+@article{Hossin2015,
+  title = {A Review on Evaluation Metrics for Data Classification Evaluations},
+  author = {Hossin, M. and Sulaiman, M.N.},
+  date = {2015-03-31},
+  journaltitle = {International Journal of Data Mining \& Knowledge Management Process},
+  shortjournal = {IJDKP},
+  volume = {5},
+  number = {2},
+  pages = {1--11},
+  publisher = {{Academy and Industry Research Collaboration Center (AIRCC)}},
+  issn = {2231-007X, 2230-9608},
+  doi = {10.5121/ijdkp.2015.5201}
+}
+
+@article{Huang2006,
+  title = {Evaluation of Neural Networks and Data Mining Methods on a Credit Assessment Task for Class Imbalance Problem},
+  author = {Huang, Yueh-Min and Hung, Chun-Min and Jiau, Hewijin Christine},
+  date = {2006-09},
+  journaltitle = {Nonlinear Analysis: Real World Applications},
+  volume = {7},
+  number = {4},
+  pages = {720--747},
+  publisher = {Elsevier BV},
+  issn = {1468-1218},
+  doi = {10.1016/j.nonrwa.2005.04.006}
+}
+
+@inproceedings{Jeni2013,
+  title = {Facing Imbalanced Data--Recommendations for the Use of Performance Metrics},
+  booktitle = {Proceedings of the 2013 {{Humaine Association Conference}} on {{Affective Computing}} and {{Intelligent Interaction}}, {{IEEE}}},
+  author = {Jeni, Laszlo A. and Cohn, Jeffrey F. and De La Torre, Fernando},
+  date = {2013-09},
+  pages = {245--251},
+  publisher = {IEEE},
+  location = {Geneva, Switzerland},
+  doi = {10.1109/acii.2013.47}
+}
+
+@article{Jurman2012,
+  title = {A Comparison of {{MCC}} and {{CEN}} Error Measures in Multi-Class Prediction},
+  author = {Jurman, Giuseppe and Riccadonna, Samantha and Furlanello, Cesare},
+  editor = {Biondi-Zoccai, Giuseppe},
+  date = {2012-08-08},
+  journaltitle = {PLoS ONE},
+  volume = {7},
+  number = {8},
+  pages = {Article e41882},
+  publisher = {Public Library of Science (PLoS)},
+  issn = {1932-6203},
+  doi = {10.1371/journal.pone.0041882}
+}
+
+@article{Kautz2017,
+  title = {Generic Performance Measure for Multiclass-Classifiers},
+  author = {Kautz, Thomas and Eskofier, Bjoern M. and Pasluosta, Cristian F.},
+  date = {2017-08},
+  journaltitle = {Pattern Recognition},
+  volume = {68},
+  pages = {111--125},
+  publisher = {Elsevier BV},
+  issn = {0031-3203},
+  doi = {10.1016/j.patcog.2017.03.008}
+}
+
+@article{Keselman,
+  title = {A {{Generally Robust Approach}} for {{Testing Hypotheses}} and {{Setting Conﬁdence Intervals}} for {{Effect Sizes}}},
+  author = {Keselman, H J and Algina, James}
+}
+
+@article{Khan2018,
+  title = {Cost Sensitive Learning of Deep Feature Representations from Imbalanced Data},
+  author = {Khan, Salman H. and Hayat, Munawar and Bennamoun, Mohammed and Sohel, Ferdous and Togneri, Roberto},
+  date = {2018},
+  journaltitle = {IEEE Transactions on Neural Networks and Learning Systems},
+  volume = {29},
+  number = {8},
+  eprint = {1508.03422},
+  eprinttype = {arXiv},
+  eprintclass = {cs},
+  pages = {3573--3587},
+  doi = {10.1109/TNNLS.2017.2732482},
+  annotation = {https://doi.org/10.48550/arXiv.1508.03422}
+}
+
+@article{Kieschnick2003,
+  title = {Regression Analysis of Variates Observed on (0, 1): Percentages, Proportions and Fractions},
+  author = {Kieschnick, Robert and McCullough, B D},
+  date = {2003-10},
+  journaltitle = {Statistical Modelling},
+  volume = {3},
+  number = {3},
+  pages = {193--213},
+  publisher = {SAGE Publications},
+  issn = {1471-082X, 1477-0342},
+  doi = {10.1191/1471082x03st053oa}
+}
+
+@article{Krawczyk2014,
+  title = {Cost-Sensitive Decision Tree Ensembles for Effective Imbalanced Classification},
+  author = {Krawczyk, Bartosz and Woźniak, Michał and Schaefer, Gerald},
+  date = {2014-01},
+  journaltitle = {Applied Soft Computing},
+  volume = {14},
+  pages = {554--562},
+  publisher = {Elsevier BV},
+  issn = {1568-4946},
+  doi = {10.1016/j.asoc.2013.08.014}
+}
+
+@article{Krawczyk2016,
+  title = {Learning from Imbalanced Data: {{Open}} Challenges and Future Directions},
+  author = {Krawczyk, Bartosz},
+  date = {2016-11},
+  journaltitle = {Progress in Artificial Intelligence},
+  shortjournal = {Prog Artif Intell},
+  volume = {5},
+  number = {4},
+  pages = {221--232},
+  publisher = {{Springer Science and Business Media LLC}},
+  issn = {2192-6352, 2192-6360},
+  doi = {10.1007/s13748-016-0094-0}
+}
+
+@article{Kroes2023,
+  title = {Demystifying Omega Squared: {{Practical}} Guidance for Effect Size in Common Analysis of Variance Designs.},
+  author = {Kroes, Antoinette D. A. and Finley, Jason R.},
+  date = {2025-07-20},
+  journaltitle = {Psychological Methods},
+  volume = {30},
+  number = {6},
+  pages = {866--887},
+  issn = {1939-1463, 1082-989X},
+  doi = {10.1037/met0000581}
+}
+
+@article{Lango2018,
+  title = {Multi-Class and Feature Selection Extensions of {{Roughly Balanced Bagging}} for Imbalanced Data},
+  author = {Lango, Mateusz and Stefanowski, Jerzy},
+  date = {2018-02},
+  journaltitle = {Journal of Intelligent Information Systems},
+  shortjournal = {J Intell Inf Syst},
+  volume = {50},
+  pages = {97--127},
+  publisher = {{Springer Science and Business Media LLC}},
+  issn = {0925-9902, 1573-7675},
+  doi = {10.1007/s10844-017-0446-7}
+}
+
+@inproceedings{Lewis1996,
+  title = {Training Algorithms for Linear Text Classifiers},
+  booktitle = {Proceedings of the 19th Annual International {{ACM SIGIR}} Conference on {{Research}} and Development in Information Retrieval},
+  author = {Lewis, David D. and Schapire, Robert E. and Callan, James P. and Papka, Ron},
+  date = {1996},
+  pages = {298--306},
+  publisher = {ACM},
+  location = {Zurich, Switzerland},
+  doi = {10.1145/243199.243277}
+}
+
+@article{Li2014,
+  title = {A Review of Boosting Methods for Imbalanced Data Classification},
+  author = {Li, Qiujie and Mao, Yaobin},
+  date = {2014-11},
+  journaltitle = {Pattern Analysis and Applications},
+  shortjournal = {Pattern Anal Applic},
+  volume = {17},
+  number = {4},
+  pages = {679--693},
+  publisher = {{Springer Science and Business Media LLC}},
+  issn = {1433-7541, 1433-755X},
+  doi = {10.1007/s10044-014-0392-8}
+}
+
+@article{Li2019a,
+  title = {{{CGAN-MBL}} for Reliability Assessment with Imbalanced Transmission Gear Data},
+  author = {Li, Jie and He, Haibo and Li, Lusi},
+  date = {2019-09},
+  journaltitle = {IEEE Transactions on Instrumentation and Measurement},
+  shortjournal = {IEEE Trans. Instrum. Meas.},
+  volume = {68},
+  number = {9},
+  pages = {3173--3183},
+  publisher = {{Institute of Electrical and Electronics Engineers (IEEE)}},
+  issn = {0018-9456, 1557-9662},
+  doi = {10.1109/tim.2018.2876777}
+}
+
+@article{Li2019b,
+  title = {Deep Learning-Based Classification Methods for Remote Sensing Images in Urban Built-up Areas},
+  author = {Li, Wenmei and Liu, Haiyan and Wang, Yu and Li, Zhuangzhuang and Jia, Yan and Gui, Guan},
+  date = {2019},
+  journaltitle = {IEEE Access},
+  volume = {7},
+  pages = {36274--36284},
+  publisher = {{Institute of Electrical and Electronics Engineers (IEEE)}},
+  issn = {2169-3536},
+  doi = {10.1109/access.2019.2903127}
+}
+
+@article{Li2020,
+  title = {Entropy-Based Sampling Approaches for Multi-Class Imbalanced Problems},
+  author = {Li, Lusi and He, Haibo and Li, Jie},
+  date = {2020-11-01},
+  journaltitle = {IEEE Transactions on Knowledge and Data Engineering},
+  shortjournal = {IEEE Trans. Knowl. Data Eng.},
+  volume = {32},
+  number = {11},
+  pages = {2159--2170},
+  publisher = {{Institute of Electrical and Electronics Engineers (IEEE)}},
+  issn = {1041-4347, 1558-2191, 2326-3865},
+  doi = {10.1109/TKDE.2019.2913859},
+  annotation = {doi van article is anders}
+}
+
+@article{Liao2008,
+  title = {Classification of Weld Flaws with Imbalanced Class Data},
+  author = {Liao, T. Warren},
+  date = {2008-10},
+  journaltitle = {Expert Systems with Applications},
+  volume = {35},
+  number = {3},
+  pages = {1041--1052},
+  publisher = {Elsevier BV},
+  issn = {0957-4174},
+  doi = {10.1016/j.eswa.2007.08.044}
+}
+
+@incollection{Lipton2014,
+  title = {Optimal Thresholding of Classifiers to Maximize {{F1}} Measure},
+  booktitle = {Lecture Notes in Computer Science: {{Vol}}. 8725. {{Machine}} Learning and Knowledge Discovery in Databases},
+  author = {Lipton, Zachary C. and Elkan, Charles and Naryanaswamy, Balakrishnan},
+  editor = {Calders, T. and Esposito, F. and Hüllermeier, E. and Meo, R.},
+  date = {2014},
+  pages = {225--239},
+  publisher = {Springer},
+  location = {Berlin, Heidelberg},
+  issn = {0302-9743, 1611-3349},
+  doi = {10.1007/978-3-662-44851-9_15},
+  isbn = {978-3-662-44850-2 978-3-662-44851-9}
+}
+
+@article{Liu2015,
+  title = {A Class-Oriented Feature Selection Approach for Multi-Class Imbalanced Network Traffic Datasets Based on Local and Global Metrics Fusion},
+  author = {Liu, Zhen and Wang, Ruoyu and Tao, Ming and Cai, Xianfa},
+  date = {2015-11},
+  journaltitle = {Neurocomputing},
+  volume = {168},
+  pages = {365--381},
+  publisher = {Elsevier BV},
+  issn = {0925-2312},
+  doi = {10.1016/j.neucom.2015.05.089}
+}
+
+@incollection{Liu2020,
+  title = {Synthetic Oversampling of Multi-Label Data Based on Local Label Distribution},
+  booktitle = {Lecture Notes in Computer Science: {{Vol}}. 11907. {{Machine}} Learning and Knowledge Discovery in Databases},
+  author = {Liu, Bin and Tsoumakas, Grigorios},
+  editor = {Brefeld, U. and Fromont, E. and Hotho, A. and Knobbe, A. and Maathuis, M. and Robardet, C.},
+  date = {2020},
+  eprint = {1905.00609},
+  eprinttype = {arXiv},
+  eprintclass = {cs},
+  publisher = {Springer},
+  location = {Cham},
+  doi = {10.1007/978-3-030-46147-8_11}
+}
+
+@article{Lix1996,
+  title = {Consequences of Assumption Violations Revisited: {{A}} Quantitative Review of Alternatives to the One-Way Analysis of Variance {{F}} Test},
+  author = {Lix, Lisa M and Keselman, Joanne C and Keselman, H J},
+  date = {1996},
+  journaltitle = {Review of Educational Research},
+  volume = {66},
+  number = {4},
+  pages = {579--619},
+  doi = {10.2307/1170654}
+}
+
+@article{Lopes2017,
+  title = {The Power Metric: {{A}} New Statistically Robust Enrichment-Type Metric for Virtual Screening Applications with Early Recovery Capability},
+  author = {Lopes, Julio Cesar Dias and Dos Santos, Fábio Mendes and Martins-José, Andrelly and Augustyns, Koen and De Winter, Hans},
+  date = {2017-12},
+  journaltitle = {Journal of Cheminformatics},
+  shortjournal = {J Cheminform},
+  volume = {9},
+  pages = {Article 7},
+  publisher = {{Springer Science and Business Media LLC}},
+  issn = {1758-2946},
+  doi = {10.1186/s13321-016-0189-4}
+}
+
+@article{Lopez2012,
+  title = {Analysis of Preprocessing vs. {{c}}ost-Sensitive Learning for Imbalanced Classification. {{Open}} Problems on Intrinsic Data Characteristics},
+  author = {López, Victoria and Fernández, Alberto and Moreno-Torres, Jose G. and Herrera, Francisco},
+  date = {2012-06},
+  journaltitle = {Expert Systems with Applications},
+  volume = {39},
+  number = {7},
+  pages = {6585--6608},
+  publisher = {Elsevier BV},
+  issn = {0957-4174},
+  doi = {10.1016/j.eswa.2011.12.043}
+}
+
+@article{Lopez2013,
+  title = {An Insight into Classification with Imbalanced Data: {{Empirical}} Results and Current Trends on Using Data Intrinsic Characteristics},
+  author = {López, Victoria and Fernández, Alberto and García, Salvador and Palade, Vasile and Herrera, Francisco},
+  date = {2013-11},
+  journaltitle = {Information Sciences},
+  volume = {250},
+  pages = {113--141},
+  publisher = {Elsevier BV},
+  issn = {0020-0255},
+  doi = {10.1016/j.ins.2013.07.007}
+}
+
+@article{Lopez2014,
+  title = {On the Importance of the Validation Technique for Classification with Imbalanced Datasets: {{Addressing}} Covariate Shift When Data Is Skewed},
+  author = {López, Victoria and Fernández, Alberto and Herrera, Francisco},
+  date = {2014-02},
+  journaltitle = {Information Sciences},
+  volume = {257},
+  pages = {1--13},
+  publisher = {Elsevier BV},
+  issn = {0020-0255},
+  doi = {10.1016/j.ins.2013.09.038}
+}
+
+@article{Loyola-gonzalez2016a,
+  title = {Study of the Impact of Resampling Methods for Contrast Pattern Based Classifiers in Imbalanced Databases},
+  author = {Loyola-González, Octavio and Martínez-Trinidad, José F. and Carrasco-Ochoa, Jesús Ariel and García-Borroto, Milton},
+  date = {2016-01},
+  journaltitle = {Neurocomputing},
+  volume = {175},
+  pages = {935--947},
+  publisher = {Elsevier BV},
+  issn = {0925-2312},
+  doi = {10.1016/j.neucom.2015.04.120}
+}
+
+@article{Loyola-gonzalez2016b,
+  title = {Effect of Class Imbalance on Quality Measures for Contrast Patterns: {{An}} Experimental Study},
+  author = {Loyola-González, Octavio and Martínez-Trinidad, José F. and Carrasco-Ochoa, Jesús Ariel and García-Borroto, Milton},
+  date = {2016-12},
+  journaltitle = {Information Sciences},
+  volume = {374},
+  pages = {179--192},
+  publisher = {Elsevier BV},
+  issn = {0020-0255},
+  doi = {10.1016/j.ins.2016.09.040}
+}
+
+@article{Luque2019,
+  title = {The Impact of Class Imbalance in Classification Performance Metrics Based on the Binary Confusion Matrix},
+  author = {Luque, Amalia and Carrasco, Alejandro and Martín, Alejandro and family=Heras, given=Ana, prefix=de las, useprefix=true},
+  date = {2019-07},
+  journaltitle = {Pattern Recognition},
+  volume = {91},
+  pages = {216--231},
+  publisher = {Elsevier BV},
+  issn = {0031-3203},
+  doi = {10.1016/j.patcog.2019.02.023}
+}
+
+@article{Maldonado2020,
+  title = {Credit Scoring Using Three-Way Decisions with Probabilistic Rough Sets},
+  author = {Maldonado, Sebastián and Peters, Georg and Weber, Richard},
+  date = {2020-01},
+  journaltitle = {Information Sciences},
+  volume = {507},
+  pages = {700--714},
+  publisher = {Elsevier BV},
+  issn = {0020-0255},
+  doi = {10.1016/j.ins.2018.08.001}
+}
+
+@article{Maratea2014,
+  title = {Adjusted {{F-measure}} and Kernel Scaling for Imbalanced Data Learning},
+  author = {Maratea, Antonio and Petrosino, Alfredo and Manzo, Mario},
+  date = {2014-02},
+  journaltitle = {Information Sciences},
+  volume = {257},
+  pages = {331--341},
+  publisher = {Elsevier BV},
+  issn = {0020-0255},
+  doi = {10.1016/j.ins.2013.04.016}
+}
+
+@article{Marques2013,
+  title = {On the Suitability of Resampling Techniques for the Class Imbalance Problem in Credit Scoring},
+  author = {Marqués, A I and García, V and Sánchez, J S},
+  date = {2013-07},
+  journaltitle = {Journal of the Operational Research Society},
+  volume = {64},
+  number = {7},
+  pages = {1060--1070},
+  publisher = {Informa UK Limited},
+  issn = {0160-5682, 1476-9360},
+  doi = {10.1057/jors.2012.120}
+}
+
+@article{Martina2017,
+  title = {Peculiar {{Genes Selection}}: {{A}} New Features Selection Method to Improve Classification Performances in Imbalanced Data Sets},
+  author = {Martina, Federica and Beccuti, Marco and Balbo, Gianfranco and Cordero, Francesca},
+  editor = {Liu, Bin},
+  date = {2017-08-14},
+  journaltitle = {PLoS ONE},
+  shortjournal = {PLoS ONE},
+  volume = {12},
+  number = {8},
+  pages = {Article e0177475},
+  publisher = {Public Library of Science (PLoS)},
+  issn = {1932-6203},
+  doi = {10.1371/journal.pone.0177475}
+}
+
+@article{Matthews1975,
+  title = {Comparison of the Predicted and Observed Secondary Structure of {{T4}} Phage Lysozyme},
+  author = {Matthews, B.W.},
+  date = {1975},
+  journaltitle = {Biochimica et Biophysica Acta (BBA) - Protein Structure},
+  volume = {405},
+  number = {2},
+  pages = {442--451},
+  issn = {0005-2795},
+  doi = {10.1016/0005-2795(75)90109-9}
+}
+
+@book{Maxwell2018,
+  title = {Designing Experiments and Analyzing Data: {{A}} Model Comparison Perspective},
+  author = {Maxwell, Scott E. and Delaney, Harold D. and Kelley, Ken},
+  date = {2018},
+  edition = {3rd ed.},
+  publisher = {Routledge},
+  location = {New York London},
+  doi = {10.4324/9781315642956},
+  isbn = {978-1-138-89228-6 978-0-367-20264-4},
+  pagetotal = {1056}
+}
+
+@article{Mullick2020,
+  title = {Appropriateness of Performance Indices for Imbalanced Data Classification: {{An}} Analysis},
+  author = {Mullick, Sankha Subhra and Datta, Shounak and Dhekane, Sourish Gunesh and Das, Swagatam},
+  date = {2020-06},
+  journaltitle = {Pattern Recognition},
+  volume = {102},
+  pages = {Article 107197},
+  publisher = {Elsevier BV},
+  issn = {0031-3203},
+  doi = {10.1016/j.patcog.2020.107197}
+}
+
+@article{Nakagawa2007,
+  title = {Effect Size, Confidence Interval and Statistical Significance: {{A}} Practical Guide for Biologists},
+  author = {Nakagawa, Shinichi and Cuthill, Innes C.},
+  date = {2007-11},
+  journaltitle = {Biological Reviews},
+  volume = {82},
+  number = {4},
+  pages = {591--605},
+  publisher = {Wiley},
+  issn = {1464-7931, 1469-185X},
+  doi = {10.1111/j.1469-185x.2007.00027.x}
+}
+
+@article{Napierala2016,
+  title = {Types of Minority Class Examples and Their Influence on Learning Classifiers from Imbalanced Data},
+  author = {Napierala, Krystyna and Stefanowski, Jerzy},
+  date = {2016-06},
+  journaltitle = {Journal of Intelligent Information Systems},
+  shortjournal = {J Intell Inf Syst},
+  volume = {46},
+  number = {3},
+  pages = {563--597},
+  publisher = {{Springer Science and Business Media LLC}},
+  issn = {0925-9902, 1573-7675},
+  doi = {10.1007/s10844-015-0368-1}
+}
+
+@article{Olejnik2003,
+  title = {Generalized Eta and Omega Squared Statistics: Measures of Effect Size for Some Common Research Designs},
+  author = {Olejnik, Stephen and Algina, James},
+  date = {2003},
+  journaltitle = {Psychological Methods},
+  volume = {8},
+  number = {4},
+  pages = {434--447},
+  publisher = {American Psychological Association (APA)},
+  issn = {1939-1463, 1082-989X},
+  doi = {10.1037/1082-989x.8.4.434}
+}
+
+@article{Ortigosa-Hernandez2017,
+  title = {Measuring the Class-Imbalance Extent of Multi-Class Problems},
+  author = {Ortigosa-Hernández, Jonathan and Inza, Iñaki and Lozano, Jose A.},
+  date = {2017-10},
+  journaltitle = {Pattern Recognition Letters},
+  volume = {98},
+  pages = {32--38},
+  publisher = {Elsevier BV},
+  issn = {0167-8655},
+  doi = {10.1016/j.patrec.2017.08.002}
+}
+
+@article{Ospina2012,
+  title = {A General Class of Zero-or-One Inflated Beta Regression Models},
+  author = {Ospina, Raydonal and Ferrari, Silvia L. P.},
+  date = {2012-06},
+  journaltitle = {Computational Statistics \& Data Analysis},
+  volume = {56},
+  number = {6},
+  eprint = {1103.2372},
+  eprinttype = {arXiv},
+  eprintclass = {stat},
+  pages = {1609--1623},
+  issn = {0167-9473},
+  doi = {10.1016/j.csda.2011.10.005}
+}
+
+@article{Peng2014,
+  title = {A New Approach for Imbalanced Data Classification Based on Data Gravitation},
+  author = {Peng, Lizhi and Zhang, Hongli and Yang, Bo and Chen, Yuehui},
+  date = {2014-12},
+  journaltitle = {Information Sciences},
+  volume = {288},
+  pages = {347--373},
+  publisher = {Elsevier BV},
+  issn = {0020-0255},
+  doi = {10.1016/j.ins.2014.04.046}
+}
+
+@inproceedings{Pereira2017,
+  title = {A Comparison of Performance Metrics for Event Classification in {{Non-Intrusive Load Monitoring}}},
+  booktitle = {2017 {{IEEE International Conference}} on {{Smart Grid Communications}} ({{SmartGridComm}})},
+  author = {Pereira, Lucas and Nunes, Nuno},
+  date = {2017-10},
+  pages = {159--164},
+  publisher = {IEEE},
+  location = {Dresden, Germany},
+  doi = {10.1109/smartgridcomm.2017.8340682}
+}
+
+@article{Pereira2018,
+  title = {Performance Evaluation in Non‐intrusive Load Monitoring: {{Datasets}}, Metrics, and Tools—{{A}} Review},
+  author = {Pereira, Lucas and Nunes, Nuno},
+  date = {2018-11},
+  journaltitle = {WIREs Data Mining and Knowledge Discovery},
+  shortjournal = {WIREs Data Min \& Knowl},
+  volume = {8},
+  number = {6},
+  pages = {Article e1265},
+  publisher = {Wiley},
+  issn = {1942-4787, 1942-4795},
+  doi = {10.1002/widm.1265}
+}
+
+@article{Pereira2020,
+  title = {An Empirical Exploration of Performance Metrics for Event Detection Algorithms in {{Non-Intrusive Load Monitoring}}},
+  author = {Pereira, Lucas and Nunes, Nuno},
+  date = {2020-11},
+  journaltitle = {Sustainable Cities and Society},
+  volume = {62},
+  pages = {Article 102399},
+  publisher = {Elsevier BV},
+  issn = {2210-6707},
+  doi = {10.1016/j.scs.2020.102399}
+}
+
+@article{Phoungphol2012,
+  title = {Robust Multiclass Classification for Learning from Imbalanced Biomedical Data},
+  author = {Phoungphol, Piyaphol and Zhang, Yanqing and Zhao, Yichuan},
+  date = {2012-12},
+  journaltitle = {Tsinghua Science and Technology},
+  shortjournal = {Tinshhua Sci. Technol.},
+  volume = {17},
+  number = {6},
+  pages = {619--628},
+  publisher = {Tsinghua University Press},
+  issn = {1007-0214},
+  doi = {10.1109/tst.2012.6374363}
+}
+
+@article{Picek2018,
+  title = {The Curse of Class Imbalance and Conflicting Metrics with Machine Learning for Side-Channel Evaluations},
+  author = {Picek, Stjepan and Heuser, Annelie and Jovic, Alan and Bhasin, Shivam and Regazzoni, Francesco},
+  date = {2018},
+  journaltitle = {IACR Transactions on Cryptographic Hardware and Embedded Systems},
+  shortjournal = {TCHES},
+  volume = {2019},
+  number = {1},
+  pages = {209--237},
+  publisher = {Universitatsbibliothek der Ruhr-Universitat Bochum},
+  issn = {2569-2925},
+  doi = {10.46586/tches.v2019.i1.209-237}
+}
+
+@article{Powers2011,
+  title = {Evaluation: {{From}} Precision, Recall and {{F-measure}} to {{ROC}}, Informedness, Markedness \& Correlation},
+  author = {Powers, David Martin Ward},
+  date = {2011-01},
+  journaltitle = {Journal of Machine Learning Technologies},
+  shortjournal = {J. Mach. Learn. Technol},
+  volume = {2},
+  number = {1},
+  pages = {37--63},
+  publisher = {Bioinfo Publications},
+  doi = {10.9735/2229-3981}
+}
+
+@article{Provost2001,
+  title = {Robust Classification for Imprecise Environments},
+  author = {Provost, Foster and Fawcett, Tom},
+  date = {2001-03},
+  journaltitle = {Machine Learning},
+  volume = {42},
+  number = {3},
+  pages = {203--231},
+  publisher = {{Springer Science and Business Media LLC}},
+  issn = {0885-6125, 1573-0565},
+  doi = {10.1023/a:1007601015854}
+}
+
+@article{Racz2019,
+  title = {Multi-Level Comparison of Machine Learning Classifiers and Their Performance Metrics},
+  author = {Rácz, Anita and Bajusz, Dávid and Héberger, Károly},
+  date = {2019-08-01},
+  journaltitle = {Molecules},
+  volume = {24},
+  number = {15},
+  pages = {Article 2811},
+  publisher = {MDPI AG},
+  issn = {1420-3049},
+  doi = {10.3390/molecules24152811}
+}
+
+@software{RCoreTeam2024,
+  type = {Computer software},
+  title = {R: {{A}} Language and Environment for Statistical Computing},
+  author = {{R Core Team}},
+  date = {2024},
+  location = {Vienna, Austria},
+  doi = {https://www.r-project.org/},
+  organization = {R Foundation for Statistical Computing},
+  version = {4.3.3}
+}
+
+@book{Rijsbergen1979,
+  title = {Information {{Retrieval}}},
+  author = {family=Rijsbergen, given=C. J., prefix=van, useprefix=true},
+  date = {1979},
+  edition = {2},
+  publisher = {Butterworth-Heinemann}
+}
+
+@article{Saez2016,
+  title = {Analyzing the Oversampling of Different Classes and Types of Examples in Multi-Class Imbalanced Datasets},
+  author = {Sáez, José A. and Krawczyk, Bartosz and Woźniak, Michał},
+  date = {2016-09},
+  journaltitle = {Pattern Recognition},
+  volume = {57},
+  pages = {164--178},
+  publisher = {Elsevier BV},
+  issn = {0031-3203},
+  doi = {10.1016/j.patcog.2016.03.012}
+}
+
+@inproceedings{Saia2019,
+  title = {A Discretized Enriched Technique to Enhance Machine Learning Performance in Credit Scoring},
+  booktitle = {Proceedings of the 11th {{International Joint Conference}} on {{Knowledge Discovery}}, {{Knowledge Engineering}} and {{Knowledge Management}}, {{SCITEPRESS}} - {{Science}} and {{Technology Publications}}},
+  author = {Saia, Roberto and Carta, Salvatore and Recupero, Diego and Fenu, Gianni and Saia, Marco},
+  date = {2019},
+  pages = {202--213},
+  publisher = {{SCITEPRESS - Science and Technology Publications}},
+  doi = {10.5220/0008377702020213},
+  annotation = {publisher    = \{\{SCITEPRESS - Science and Technology Publications\}\},}
+}
+
+@incollection{Sanchez-Crisostomo2014,
+  title = {Empirical Analysis of Assessments Metrics for Multi-Class Imbalance Learning on the Back-Propagation Context},
+  booktitle = {Lecture Notes in Computer Science: {{Vol}}. 8795. {{Advances}} in Swarm Intelligence.},
+  author = {Sánchez-Crisostomo, Juan Pablo and Alejo, Roberto and López-González, Erika and Valdovinos, Rosa María and Pacheco-Sánchez, J. Horacio},
+  editor = {Tan, Y. and Shi, Y. and Coello, C. A. C.},
+  date = {2014},
+  pages = {17--23},
+  publisher = {Springer},
+  location = {Cham},
+  issn = {0302-9743, 1611-3349},
+  doi = {10.1007/978-3-319-11897-0_3},
+  isbn = {978-3-319-11896-3 978-3-319-11897-0}
+}
+
+@article{Santos2018,
+  title = {Cross-Validation for Imbalanced Datasets: Avoiding Overoptimistic and Overfitting Approaches},
+  author = {Santos, Miriam Seoane and Soares, Jastin Pompeu and Abreu, Pedro Henrigues and Araujo, Helder and Santos, Joao},
+  date = {2018-11},
+  journaltitle = {IEEE Computational Intelligence Magazine},
+  shortjournal = {IEEE Comput. Intell. Mag.},
+  volume = {13},
+  number = {4},
+  pages = {59--76},
+  publisher = {{Institute of Electrical and Electronics Engineers (IEEE)}},
+  issn = {1556-603X, 1556-6048},
+  doi = {10.1109/mci.2018.2866730}
+}
+
+@article{Serrano-Cinca2016,
+  title = {The Use of Profit Scoring as an Alternative to Credit Scoring Systems in Peer-to-Peer ({{P2P}}) Lending},
+  author = {Serrano-Cinca, Carlos and Gutiérrez-Nieto, Begoña},
+  date = {2016-09},
+  journaltitle = {Decision Support Systems},
+  volume = {89},
+  pages = {113--122},
+  publisher = {Elsevier BV},
+  issn = {0167-9236},
+  doi = {10.1016/j.dss.2016.06.014}
+}
+
+@inproceedings{Shenfield2017,
+  title = {Multi-Objective Evolution of Artificial Neural Networks in Multi-Class Medical Diagnosis Problems with Class Imbalance},
+  booktitle = {2017 {{IEEE Conference}} on {{Computational Intelligence}} in {{Bioinformatics}} and {{Computational Biology}} ({{CIBCB}})},
+  author = {Shenfield, Alex and Rostami, Shahin},
+  date = {2017-08},
+  pages = {1--8},
+  publisher = {IEEE},
+  location = {Manchester, United Kingdom},
+  doi = {10.1109/cibcb.2017.8058553}
+}
+
+@article{Smithson2006,
+  title = {A Better Lemon Squeezer? {{Maximum-likelihood}} Regression with Beta-Distributed Dependent Variables.},
+  author = {Smithson, Michael and Verkuilen, Jay},
+  date = {2006-03},
+  journaltitle = {Psychological Methods},
+  volume = {11},
+  number = {1},
+  pages = {54--71},
+  publisher = {American Psychological Association (APA)},
+  issn = {1939-1463, 1082-989X},
+  doi = {10.1037/1082-989x.11.1.54}
+}
+
+@article{Sokolova2009,
+  title = {A Systematic Analysis of Performance Measures for Classification Tasks},
+  author = {Sokolova, Marina and Lapalme, Guy},
+  date = {2009-07},
+  journaltitle = {Information Processing \& Management},
+  volume = {45},
+  number = {4},
+  pages = {427--437},
+  publisher = {Elsevier BV},
+  issn = {0306-4573},
+  doi = {10.1016/j.ipm.2009.03.002}
+}
+
+@article{Sousa2016,
+  title = {A New Dynamic Modeling Framework for Credit Risk Assessment},
+  author = {Sousa, Maria Rocha and Gama, João and Brandão, Elísio},
+  date = {2016-03},
+  journaltitle = {Expert Systems with Applications},
+  volume = {45},
+  pages = {341--351},
+  publisher = {Elsevier BV},
+  issn = {0957-4174},
+  doi = {10.1016/j.eswa.2015.09.055}
+}
+
+@article{Stehman1997,
+  title = {Selecting and Interpreting Measures of Thematic Classification Accuracy},
+  author = {Stehman, S. V.},
+  date = {1997},
+  journaltitle = {Remote Sensing of Environment},
+  shortjournal = {Remote Sensing of Environment},
+  volume = {62},
+  number = {1},
+  pages = {77--89},
+  doi = {10.1016/S0034-4257(97)00083-7}
+}
+
+@article{Sun2007,
+  title = {Cost-Sensitive Boosting for Classification of Imbalanced Data},
+  author = {Sun, Yanmin and Kamel, Mohamed S. and Wong, Andrew K.C. and Wang, Yang},
+  date = {2007-12},
+  journaltitle = {Pattern Recognition},
+  volume = {40},
+  number = {12},
+  pages = {3358--3378},
+  publisher = {Elsevier BV},
+  issn = {0031-3203},
+  doi = {10.1016/j.patcog.2007.04.009}
+}
+
+@article{Sun2018,
+  title = {Imbalanced Enterprise Credit Evaluation with {{DTE-SBD}}: {{Decision}} Tree Ensemble Based on {{SMOTE}} and Bagging with Differentiated Sampling Rates},
+  author = {Sun, Jie and Lang, Jie and Fujita, Hamido and Li, Hui},
+  date = {2018-01},
+  journaltitle = {Information Sciences},
+  volume = {425},
+  pages = {76--91},
+  publisher = {Elsevier BV},
+  issn = {0020-0255},
+  doi = {10.1016/j.ins.2017.10.017}
+}
+
+@book{Tabachnick2019,
+  title = {Using Multivariate Statistics},
+  author = {Tabachnick, Barbara G. and Fidell, Linda S. and Ullman, Jodie B.},
+  date = {2019},
+  edition = {7th ed.},
+  publisher = {Pearson},
+  location = {NY, NY},
+  isbn = {978-0-13-479054-1},
+  pagetotal = {832}
+}
+
+@article{Tahir2019,
+  title = {A Classification Model for Class Imbalance Dataset Using Genetic Programming},
+  author = {Tahir, Mirza Amaad Ul Haq and Asghar, Sohail and Manzoor, Awais and Noor, Muhammad Asim},
+  date = {2019},
+  journaltitle = {IEEE Access},
+  volume = {7},
+  pages = {71013--71037},
+  publisher = {{Institute of Electrical and Electronics Engineers (IEEE)}},
+  issn = {2169-3536},
+  doi = {10.1109/access.2019.2915611}
+}
+
+@article{Tahiraalam2019,
+  title = {An Effective Recursive Technique for Multi-Class Classification and Regression for Imbalanced Data},
+  author = {Alam, Tahira and Ahmed, Chowdhury Farhan and Zahin, Sabit Anwar and Khan, Muhammad Asif Hossain and Islam, Maliha Tashfia},
+  date = {2019},
+  journaltitle = {IEEE Access},
+  volume = {7},
+  pages = {127615--127630},
+  publisher = {{Institute of Electrical and Electronics Engineers (IEEE)}},
+  issn = {2169-3536},
+  doi = {10.1109/access.2019.2939755}
+}
+
+@article{Tan2005,
+  title = {Neighbor-Weighted {{K-nearest}} Neighbor for Unbalanced Text Corpus},
+  author = {Tan, S},
+  date = {2005-05},
+  journaltitle = {Expert Systems with Applications},
+  volume = {28},
+  number = {4},
+  pages = {667--671},
+  publisher = {Elsevier BV},
+  issn = {0957-4174},
+  doi = {10.1016/j.eswa.2004.12.023}
+}
+
+@article{Thammasiri2014,
+  title = {A Critical Assessment of Imbalanced Class Distribution Problem: {{The}} Case of Predicting Freshmen Student Attrition},
+  author = {Thammasiri, Dech and Delen, Dursun and Meesad, Phayung and Kasap, Nihat},
+  date = {2014-02},
+  journaltitle = {Expert Systems with Applications},
+  volume = {41},
+  number = {2},
+  pages = {321--330},
+  publisher = {Elsevier BV},
+  issn = {0957-4174},
+  doi = {10.1016/j.eswa.2013.07.046}
+}
+
+@article{Tharwat2021,
+  title = {Classification Assessment Methods},
+  author = {Tharwat, Alaa},
+  date = {2021-01-04},
+  journaltitle = {Applied Computing and Informatics},
+  shortjournal = {ACI},
+  volume = {17},
+  number = {1},
+  pages = {168--192},
+  publisher = {Emerald},
+  issn = {2634-1964, 2210-8327},
+  doi = {10.1016/j.aci.2018.08.003}
+}
+
+@article{Vacha-Haase2004,
+  title = {How to Estimate and Interpret Various Effect Sizes.},
+  author = {Vacha-Haase, Tammi and Thompson, Bruce},
+  date = {2004-10},
+  journaltitle = {Journal of Counseling Psychology},
+  volume = {51},
+  number = {4},
+  pages = {473--481},
+  publisher = {American Psychological Association (APA)},
+  issn = {1939-2168, 0022-0167},
+  doi = {10.1037/0022-0167.51.4.473}
+}
+
+@article{Valverde-Albacete2014,
+  title = {100\% Classification Accuracy Considered Harmful: {{The}} Normalized Information Transfer Factor Explains the Accuracy Paradox},
+  author = {Valverde-Albacete, Francisco J. and Peláez-Moreno, Carmen},
+  editor = {Paris, Matteo G. A.},
+  date = {2014-01-10},
+  journaltitle = {PLoS ONE},
+  volume = {9},
+  number = {1},
+  pages = {Article e84217},
+  publisher = {Public Library of Science (PLoS)},
+  issn = {1932-6203},
+  doi = {10.1371/journal.pone.0084217}
+}
+
+@report{VanGestel2020,
+  type = {Unpublished internship report submitted to Leiden University},
+  title = {The Prediction of Payment Behavior},
+  author = {Van Gestel, Suzanne L.},
+  date = {2020},
+  institution = {CreditDevice BV},
+  annotation = {[Unpublished internship report submitted to Leiden University]}
+}
+
+@article{Villacorta2017,
+  title = {The {{welchADF}} Package for Robust Hypothesis Testing in Unbalanced Multivariate Mixed Models with Heteroscedastic and Non-Normal Data},
+  author = {Villacorta, J., Pablo},
+  date = {2017},
+  journaltitle = {The R Journal},
+  volume = {9},
+  number = {2},
+  pages = {309--328},
+  publisher = {The R Foundation},
+  issn = {2073-4859},
+  doi = {10.32614/rj-2017-049}
+}
+
+@article{Waldner2019,
+  title = {Needle in a Haystack: {{Mapping}} Rare and Infrequent Crops Using Satellite Imagery and Data Balancing Methods},
+  author = {Waldner, François and Chen, Yang and Lawes, Roger and Hochman, Zvi},
+  date = {2019-11},
+  journaltitle = {Remote Sensing of Environment},
+  volume = {233},
+  pages = {Article 111375},
+  publisher = {Elsevier BV},
+  issn = {0034-4257},
+  doi = {10.1016/j.rse.2019.111375}
+}
+
+@article{Wang2012,
+  title = {Multiclass Imbalance Problems: {{Analysis}} and Potential Solutions},
+  author = {Wang, Shuo and Yao, Xin},
+  date = {2012-08},
+  journaltitle = {IEEE Transactions on Systems, Man, and Cybernetics, Part B},
+  shortjournal = {IEEE Trans. Syst., Man, Cybern. B},
+  volume = {42},
+  number = {4},
+  pages = {1119--1130},
+  publisher = {{Institute of Electrical and Electronics Engineers (IEEE)}},
+  issn = {1083-4419, 1941-0492},
+  doi = {10.1109/tsmcb.2012.2187280}
+}
+
+@article{Warton2011,
+  title = {The Arcsine Is Asinine: The Analysis of Proportions in Ecology},
+  author = {Warton, David I. and Hui, Francis K. C.},
+  date = {2011-01},
+  journaltitle = {Ecology},
+  volume = {92},
+  number = {1},
+  pages = {3--10},
+  publisher = {Wiley},
+  issn = {0012-9658},
+  doi = {10.1890/10-0340.1}
+}
+
+@article{Wei2013,
+  title = {Effective Detection of Sophisticated Online Banking Fraud on Extremely Imbalanced Data},
+  author = {Wei, Wei and Li, Jinjiu and Cao, Longbing and Ou, Yuming and Chen, Jiahang},
+  date = {2013-07},
+  journaltitle = {World Wide Web},
+  volume = {16},
+  number = {4},
+  pages = {449--475},
+  publisher = {{Springer Science and Business Media LLC}},
+  issn = {1386-145X, 1573-1413},
+  doi = {10.1007/s11280-012-0178-0}
+}
+
+@article{Weiss2003,
+  title = {Learning When Training Data Are Costly: {{The}} Effect of Class Distribution on Tree Induction},
+  author = {Weiss, G. M. and Provost, F.},
+  date = {2003-10-01},
+  journaltitle = {Journal of Artificial Intelligence Research},
+  shortjournal = {jair},
+  volume = {19},
+  pages = {315--354},
+  publisher = {AI Access Foundation},
+  issn = {1076-9757},
+  doi = {10.1613/jair.1199}
+}
+
+@article{Widera2020,
+  title = {Multi-Classifier Prediction of Knee Osteoarthritis Progression from Incomplete Imbalanced Longitudinal Data},
+  author = {Widera, Paweł and Welsing, Paco M. J. and Ladel, Christoph and Loughlin, John and Lafeber, Floris P. J. G. and Dop, Florence Petit and Larkin, Jonathan and Weinans, Harrie and Mobasheri, Ali and Bacardit, Jaume},
+  date = {2020-05-21},
+  journaltitle = {Scientific Reports},
+  shortjournal = {Sci Rep},
+  volume = {10},
+  eprint = {1909.13408},
+  eprinttype = {arXiv},
+  eprintclass = {cs},
+  pages = {Article 8427},
+  issn = {2045-2322},
+  doi = {10.1038/s41598-020-64643-8}
+}
+
+@article{Wong2022,
+  title = {Linear Approximation of {{F-measure}} for the Performance Evaluation of Classification Algorithms on Imbalanced Data Sets},
+  author = {Wong, Tzu-Tsung},
+  date = {2022-02-01},
+  journaltitle = {IEEE Transactions on Knowledge and Data Engineering},
+  shortjournal = {IEEE Trans. Knowl. Data Eng.},
+  volume = {34},
+  number = {2},
+  pages = {753--763},
+  publisher = {{Institute of Electrical and Electronics Engineers (IEEE)}},
+  issn = {1041-4347, 1558-2191, 2326-3865},
+  doi = {10.1109/tkde.2020.2986749}
+}
+
+@article{Xia2017,
+  title = {A Boosted Decision Tree Approach Using {{Bayesian}} Hyper-Parameter Optimization for Credit Scoring},
+  author = {Xia, Yufei and Liu, Chuanzhe and Li, YuYing and Liu, Nana},
+  date = {2017-07},
+  journaltitle = {Expert Systems with Applications},
+  volume = {78},
+  pages = {225--241},
+  publisher = {Elsevier BV},
+  issn = {0957-4174},
+  doi = {10.1016/j.eswa.2017.02.017}
+}
+
+@article{Xia2018,
+  title = {A Novel Heterogeneous Ensemble Credit Scoring Model Based on Bstacking Approach},
+  author = {Xia, Yufei and Liu, Chuanzhe and Da, Bowen and Xie, Fangming},
+  date = {2018-03},
+  journaltitle = {Expert Systems with Applications},
+  volume = {93},
+  pages = {182--199},
+  publisher = {Elsevier BV},
+  issn = {0957-4174},
+  doi = {10.1016/j.eswa.2017.10.022}
+}
+
+@inproceedings{Yang1999,
+  title = {A Re-Eximanination of Text Categorization Methods},
+  booktitle = {Proceedings of the 22nd Annual International {{ACM SIGIR}} Conference on {{Research}} and Development in Information Retrieval, {{ACM}}},
+  author = {Yang, Yiming and Xin, Liu},
+  date = {1999},
+  series = {{{SIGIR}} '99},
+  pages = {42--49},
+  publisher = {ACM},
+  doi = {10.1145/312624.312647},
+  annotation = {chairmen: Fredric Gey, Marti Hearst, Richard Tong}
+}
+
+@article{Yang2009,
+  title = {Using Random Forest for Reliable Classification and Cost-Sensitive Learning for Medical Diagnosis},
+  author = {Yang, Fan and Wang, Hua-zhen and Mi, Hong and Lin, Cheng-de and Cai, Wei-wen},
+  date = {2009-01},
+  journaltitle = {BMC Bioinformatics},
+  volume = {10},
+  pages = {Article S22},
+  publisher = {{Springer Science and Business Media LLC}},
+  issn = {1471-2105},
+  doi = {10.1186/1471-2105-10-s1-s22},
+  issue = {Suppl 1}
+}
+
+@article{Yang2018,
+  title = {{{AMDO}}: {{An}} over-Sampling Technique for Multi-Class Imbalanced Problems},
+  author = {Yang, Xuebing and Kuang, Qiuming and Zhang, Wensheng and Zhang, Guoping},
+  date = {2018},
+  journaltitle = {IEEE Transactions on Knowledge and Data Engineering},
+  volume = {30},
+  number = {9},
+  pages = {1672--1685},
+  doi = {10.1109/TKDE.2017.2761347}
+}
+
+@article{Yu2016,
+  title = {A Novel Multistage Deep Belief Network Based Extreme Learning Machine Ensemble Learning Paradigm for Credit Risk Assessment},
+  author = {Yu, Lean and Yang, Zebin and Tang, Ling},
+  date = {2016-12},
+  journaltitle = {Flexible Services and Manufacturing Journal},
+  shortjournal = {Flex Serv Manuf J},
+  volume = {28},
+  number = {4},
+  pages = {576--592},
+  publisher = {{Springer Science and Business Media LLC}},
+  issn = {1936-6582, 1936-6590},
+  doi = {10.1007/s10696-015-9226-2}
+}
+
+@article{Yuan2018,
+  title = {A Regularized Ensemble Framework of Deep Learning for Cancer Detection from Multi-Class, Imbalanced Training Data},
+  author = {Yuan, Xiaohui and Xie, Lijun and Abouelenien, Mohamed},
+  date = {2018-05},
+  journaltitle = {Pattern Recognition},
+  volume = {77},
+  pages = {160--172},
+  publisher = {Elsevier BV},
+  issn = {0031-3203},
+  doi = {10.1016/j.patcog.2017.12.017}
+}
+
+@article{Zarinabad2017,
+  title = {Multiclass Imbalance Learning: {{Improving}} Classification of Pediatric Brain Tumors from Magnetic Resonance Spectroscopy},
+  author = {Zarinabad, Niloufar and Wilson, Martin and Gill, Simrandip K and Manias, Karen A and Davies, Nigel P and Peet, Andrew C},
+  date = {2017-06},
+  journaltitle = {Magnetic Resonance in Medicine},
+  shortjournal = {Magn. Reson. Med.},
+  volume = {77},
+  number = {6},
+  pages = {2114--2124},
+  publisher = {Wiley},
+  issn = {0740-3194},
+  doi = {10.1002/mrm.26318}
+}
+
+@article{Zhang2019,
+  title = {An Instance-Based Learning Recommendation Algorithm of Imbalance Handling Methods},
+  author = {Zhang, Xueying and Li, R. and Zhang, B. and Yang, Y. and Guo, J. and Ji, X.},
+  date = {2019},
+  journaltitle = {Applied Mathematics and Computation},
+  volume = {351},
+  pages = {204--218},
+  doi = {10.1016/j.amc.2018.12.020}
+}
+
+@article{Zhang2022,
+  title = {Towards Class-Imbalance Aware Multi-Label Learning},
+  author = {Zhang, Min-Ling and Li, Yu-Kun and Yang, Hao and Liu, Xu-Ying},
+  date = {2022-06},
+  journaltitle = {IEEE Transactions on Cybernetics},
+  shortjournal = {IEEE Trans. Cybern.},
+  volume = {52},
+  number = {6},
+  pages = {4459--4471},
+  publisher = {{Institute of Electrical and Electronics Engineers (IEEE)}},
+  issn = {2168-2267, 2168-2275},
+  doi = {10.1109/tcyb.2020.3027509}
+}
+
+@article{ZhangBi2019,
+  title = {Multi-{{Imbalance}}: {{An}} Open-Source Software for Multi-Class Imbalance Learning},
+  author = {Zhang, Chongsheng and Bi, Jingjun and Xu, Shixin and Ramentol, Enislay and Fan, Gaojuan and Qiao, Baojun and Fujita, Hamido},
+  date = {2019-06},
+  journaltitle = {Knowledge-Based Systems},
+  volume = {174},
+  pages = {137--143},
+  publisher = {Elsevier BV},
+  issn = {0950-7051},
+  doi = {10.1016/j.knosys.2019.03.001}
+}
+
+@article{ZhangGao2014,
+  title = {Credit Risk Evaluation Using Multi-Criteria Optimization Classifier with Kernel, Fuzzification and Penalty Factors},
+  author = {Zhang, Zhiwang and Gao, Guangxia and Shi, Yong},
+  date = {2014-08},
+  journaltitle = {European Journal of Operational Research},
+  volume = {237},
+  number = {1},
+  pages = {335--348},
+  publisher = {Elsevier BV},
+  issn = {0377-2217},
+  doi = {10.1016/j.ejor.2014.01.044}
+}
+
+@article{Zhangzhou2014,
+  title = {A Review on Multi-Label Learning Algorithms},
+  author = {Zhang, Min-Ling and Zhou, Zhi-Hua},
+  date = {2014-08},
+  journaltitle = {IEEE Transactions on Knowledge and Data Engineering},
+  shortjournal = {IEEE Trans. Knowl. Data Eng.},
+  volume = {26},
+  number = {8},
+  pages = {1819--1837},
+  publisher = {{Institute of Electrical and Electronics Engineers (IEEE)}},
+  issn = {1041-4347},
+  doi = {10.1109/tkde.2013.39}
+}
+
+@article{Zhao2016,
+  title = {Imbalanced Classification by Learning Hidden Data Structure},
+  author = {Zhao, Yang and Shrivastava, Abhishek K. and Tsui, Kwok Leung},
+  date = {2016-07-02},
+  journaltitle = {IIE Transactions},
+  volume = {48},
+  number = {7},
+  pages = {614--628},
+  publisher = {Informa UK Limited},
+  issn = {0740-817X, 1545-8830},
+  doi = {10.1080/0740817x.2015.1110269}
+}
+
+@article{ZhaoLi2008,
+  title = {Protein Classification with Imbalanced Data},
+  author = {Zhao, Xing‐Ming and Li, Xin and Chen, Luonan and Aihara, Kazuyuki},
+  date = {2008-03},
+  journaltitle = {Proteins: Structure, Function, and Bioinformatics},
+  shortjournal = {Proteins},
+  volume = {70},
+  number = {4},
+  pages = {1125--1132},
+  publisher = {Wiley},
+  issn = {0887-3585, 1097-0134},
+  doi = {10.1002/prot.21870}
+}
+
+@article{Zhou2006,
+  title = {Training Cost-Sensitive Neural Networks with Methods Addressing the Class Imbalance Problem},
+  author = {Zhou, Zhi-Hua and Liu, Xu-Ying},
+  date = {2006-01},
+  journaltitle = {IEEE Transactions on Knowledge and Data Engineering},
+  shortjournal = {IEEE Trans. Knowl. Data Eng.},
+  volume = {18},
+  number = {1},
+  pages = {63--77},
+  publisher = {{Institute of Electrical and Electronics Engineers (IEEE)}},
+  issn = {1041-4347},
+  doi = {10.1109/tkde.2006.17}
+}
+
+@article{Zhou2010,
+  title = {On Multi‐class Cost‐sensitive Learning},
+  author = {Zhou, Zhi‐Hua and Liu, Xu‐Ying},
+  date = {2010-08},
+  journaltitle = {Computational Intelligence},
+  volume = {26},
+  number = {3},
+  pages = {232--257},
+  publisher = {Wiley},
+  issn = {0824-7935, 1467-8640},
+  doi = {10.1111/j.1467-8640.2010.00358.x}
+}
+
+@article{Zhu2017,
+  title = {An Empirical Comparison of Techniques for the Class Imbalance Problem in Churn Prediction},
+  author = {Zhu, Bing and Baesens, Bart and family=Broucke, given=Seppe K.L.M., prefix=vanden, useprefix=true},
+  date = {2017-10},
+  journaltitle = {Information Sciences},
+  volume = {408},
+  pages = {84--99},
+  publisher = {Elsevier BV},
+  issn = {0020-0255},
+  doi = {10.1016/j.ins.2017.04.015}
+}
+
+@article{Zhu2018,
+  title = {{{LRID}}: {{A}} New Metric of Multi-Class Imbalance Degree Based on Likelihood-Ratio Test},
+  author = {Zhu, Rui and Wang, Ziyu and Ma, Zhanyu and Wang, Guijin and Xue, Jing-Hao},
+  date = {2018-12},
+  journaltitle = {Pattern Recognition Letters},
+  volume = {116},
+  pages = {36--42},
+  publisher = {Elsevier BV},
+  issn = {0167-8655},
+  doi = {10.1016/j.patrec.2018.09.012}
+}
+
+@article{Zhu2020,
+  title = {Adjusting the Imbalance Ratio by the Dimensionality of Imbalanced Data},
+  author = {Zhu, Rui and Guo, Yiwen and Xue, Jing-Hao},
+  date = {2020-05},
+  journaltitle = {Pattern Recognition Letters},
+  volume = {133},
+  pages = {217--223},
+  publisher = {Elsevier BV},
+  issn = {0167-8655},
+  doi = {10.1016/j.patrec.2020.03.004}
+}
+
+@article{Zhuqiuming2020,
+  title = {On the Performance of {{Matthews}} Correlation Coefficient ({{MCC}}) for Imbalanced Dataset},
+  author = {Zhu, Qiuming},
+  date = {2020-08},
+  journaltitle = {Pattern Recognition Letters},
+  volume = {136},
+  pages = {71--80},
+  publisher = {Elsevier BV},
+  issn = {0167-8655},
+  doi = {10.1016/j.patrec.2020.03.030}
+}

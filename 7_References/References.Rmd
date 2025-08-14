@@ -1,0 +1,4 @@
+# References
+<div id="refs"></div>
+
+<!-- Retrieved from bretauv, 12-08-2025,  https://stackoverflow.com/questions/58187514/r-markdown-place-an-appendix-after-the-references-section -->

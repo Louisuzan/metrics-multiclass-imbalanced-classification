@@ -1,0 +1,209 @@
+## Study B
+```{r B: (Re)move Load packages, echo = F, message = FALSE}
+# load packages (not different from A)
+library("tidyverse")
+library("effectsize")
+library("afex")
+library("ggplot2")
+library("kableExtra")
+library("tibble")
+library("extrafont")
+library("ggnewscale")
+library("grid")
+library("stringr")
+library("MOTE")
+```
+
+```{r B: (Re)move Import APA functions, echo = F}
+# Import Apa-style format
+source('./Apa-style.R')
+```
+
+```{r B: (Re)Move Plot theme, echo = F}
+# Plot theme (not different from A)
+# showtext_auto() for CM ROMAN needed ones applied in wrapper script
+thm <- theme_bw() +
+  theme(text=element_text(family ="CM Roman", size=9)) + 
+  theme(legend.background = element_blank(),
+        legend.box.background = element_rect(colour = "black", linewidth = 0.2),
+        legend.spacing.y = unit(0,"cm"),
+        legend.text = element_text(size = 9, family="CM Roman"),
+        legend.title = element_text(size = 9, family="CM Roman")) +
+  theme(strip.background = element_blank(),
+        strip.text = element_text(size = 9, family="CM Roman")) + 
+  theme(plot.caption = ggtext::element_markdown(hjust = 0, size = 9, lineheight = 2.0, margin = margin(b = 2, t = 10), family="CM Roman")) + 
+  theme(plot.caption.position = "plot" ) +
+  theme(axis.title = element_text(size = 9, family ="CM Roman"))
+```
+
+```{r B: Import data , echo = F}
+# Import data
+dataB <- readRDS("../4_Methodology/Preparation and Simulation Studies/SimBdata.RDS")
+```
+
+```{r B: Mixed model, message = F, echo = F}
+# Mixed model with afex aov_ez()
+# Defaults are: Effect size = Generalized eta-squared,
+#               Sphericity correction on DF = Greenhouse-Geisser (more conservative than Hyunh-Feldt)
+#               Sums of squares = Type 3 
+# Note 1:        METRIC specified as 'within' to account for repeated nature / non-independence of error and
+#               'observed' to avoid inflated effect sizes values because METRIC can be seen as a measured
+#               rather than manipulated factor.
+
+ModelB <- afex::aov_ez(data = dataB, id = "row" , dv = "y", between = c( "MISCL", "IR", "nMIN"), within = "METRIC", observed = "METRIC")
+```
+
+```{r B: Table preparation APA, echo = F}
+# Table preparation
+Tab_B <- ModelB$anova_table
+Tab_B2 <- cbind(Tab_B[-c(1:7),-5],"ges"= Tab_B[-c(1:7),5])
+Tab_B3 <- tibble::rownames_to_column(Tab_B2, var = "Predictor")
+
+# Convert to APA style
+Aov_Tab_B <- Tab_B3
+Aov_Tab_B[,1] <- gsub(":", " × ", Aov_Tab_B[,1])
+Aov_Tab_B[,4] <- Aov_Tab_B[,4]* 10^{6}
+Aov_Tab_B[,c(2,3,5)] <- apply(Aov_Tab_B[,c(2,3,5)], c(1,2),  apa_above0)
+Aov_Tab_B[,6] <- apa_p(Aov_Tab_B[,6])
+Aov_Tab_B[,7] <- apa_below0(Aov_Tab_B[,7])
+```
+
+```{r B: Grand Mean and SD for METRIC (BMSDM), echo = F}
+# Grand Mean and SD for each metric (used in text)
+BMSDM <- aggregate(y ~ METRIC, dataB, function(x) c(mean = mean(x), sd = sd(x)))
+BMSDM$y[,"mean"] <- round(BMSDM$y[,"mean"], 2)
+BMSDM$y[,"sd"] <- round(BMSDM$y[,"sd"], 3)
+BMSDM$y[,"mean"] <- stringr::str_remove(BMSDM$y[,"mean"], "^0+") # remove leading zero
+BMSDM$y[,"sd"] <- stringr::str_remove(BMSDM$y[,"sd"], "^0+")
+```
+
+```{r B: Mean and SD for METRIC on IR (BMSDACCIR), echo = F}
+# Mean and SD for Accuracy on IR
+BMSDIR <- dataB %>% group_by(IR, METRIC) %>% aggregate(y ~ METRIC, function(x) c(mean = mean(x), sd = sd(x)))
+# Only Accuracy is used in text
+BMSDIR$y[,"mean"] <- round(BMSDIR$y[,"mean"], 2)
+BMSDIR$y[,"sd"] <- round(BMSDIR$y[,"sd"], 3)
+BMSDIR$y[,"mean"] <- stringr::str_remove(BMSDIR$y[,"mean"], "^0+") # remove leading zero
+BMSDIR$y[,"sd"] <- stringr::str_remove(BMSDIR$y[,"sd"], "^0+")
+```
+
+```{r B: Delta MISCL for F1m and MCC, echo =F}
+# Difference between levels of MISCL for F1m and MCC (used in text)
+# F1m 
+deltaMISCLF1m <- MOTE::apa(mean(subset(subset(dataB, METRIC == "F1m"), MISCL == "Min50")$y)-mean(subset(subset(dataB, METRIC == "F1m"), MISCL == "Min100")$y),2,F)
+# MCC
+deltaMISCLMCC <- MOTE::apa(mean(subset(subset(dataB, METRIC == "MCC"), MISCL == "Min50")$y)-mean(subset(subset(dataB, METRIC == "MCC"), MISCL == "Min100")$y),2,F)
+```
+
+<!-- Start section study B -->
+
+The ANOVA results of study B are presented in Table 2. All effects involving METRIC were statistically significant, three of which exceeded the moderate threshold of $\eta_{g}^{2}$. The main effect of METRIC was most substantial, *F*(`r Aov_Tab_B[Aov_Tab_B$Predictor %in% "METRIC",]["num Df"]`, `r Aov_Tab_B[Aov_Tab_B$Predictor %in% "METRIC",]["den Df"]`) = `r Aov_Tab_B[Aov_Tab_B$Predictor %in% "METRIC",]["F"]`, *p* `r Aov_Tab_B[Aov_Tab_B$Predictor %in% "METRIC",]["Pr(>F)"]`, $\eta_{g}^{2}$ = `r Aov_Tab_B[Aov_Tab_B$Predictor %in% "METRIC",]["ges"]`, \mbox{$\hat{\epsilon}$ = `r MOTE::apa(summary(ModelB$Anova)$pval.adjustments[1, "GG eps"],2, T)`.} This means that the metrics evaluated the scenarios differently. On average, Accuracy scored `r BMSDM[BMSDM$METRIC %in% "Accuracy",]$y[,"mean"]` (*SD* = `r BMSDM[BMSDM$METRIC %in% "Accuracy",]$y[,"sd"]`), F1~m~ scored `r BMSDM[BMSDM$METRIC %in% "F1m",]$y[,"mean"]` (*SD* = `r BMSDM[BMSDM$METRIC %in% "F1m",]$y[,"sd"]`), nMCC scored `r BMSDM[BMSDM$METRIC %in% "MCC",]$y[,"mean"]` (*SD* = `r BMSDM[BMSDM$METRIC %in% "MCC",]$y[,"sd"]`), and nMCC~cb~ scored `r BMSDM[BMSDM$METRIC %in% "MCC.cb",]$y[,"mean"]` (*SD* = `r BMSDM[BMSDM$METRIC %in% "MCC.cb",]$y[,"sd"]`). Due to differences in the interpretation of the individual metrics, greater emphasis was placed on the significant interaction effects. \
+
+```{r B: Presented table, echo = F, message = F}
+# ANOVA Table
+
+knitr::kable(
+  Aov_Tab_B,
+  format = "latex",
+  booktabs = TRUE,
+  longtable = T,
+  escape = FALSE,
+  col.names = c('Predictor',
+                '$\\mathit{df}_{\\text{num}}$',
+                '$\\mathit{df}_{\\text{den}}$',
+                '\\textit{MSE} × $10^{-6}$',
+                '\\textit{F}',
+                "\\textit{p}",
+                "$\\eta_{g}^{2}$"),
+  align = c("l", "c", "c", "c", "r", "c", "c"),
+  digits = c(NA, 2, 2, 2, 2, 3, 2),
+  caption = "Study B: ANOVA Table" ) %>%
+  kable_styling(font_size = 10, position = "left") %>%
+  row_spec(row = 0, align = "c")  %>%
+  footnote(
+    general_title = "",
+    escape = F,
+    general = "\\\\hspace{-.28cm}\\\\begin{minipage}{\\\\linewidth}\\\\vspace{.4cm}\\\\textit{Note}. Due to the violation of sphericity $\\\\mathit{df}_{\\\\text{num}}$ and $\\\\mathit{df}_{\\\\text{den}}$ were corrected using the Greenhouse-Geisser correction ($\\\\hat{\\\\epsilon}$ = 0.42).\\\\end{minipage}", # Epsilon is manual
+    threeparttable = T,
+    footnote_as_chunk = TRUE)
+```
+
+The most substantial interaction effect was observed between METRIC and MISCL (*F*(`r Aov_Tab_B[Aov_Tab_B$Predictor %in% "MISCL × METRIC",]["num Df"]`, `r Aov_Tab_B[Aov_Tab_B$Predictor %in% "MISCL × METRIC",]["den Df"]`) = `r Aov_Tab_B[Aov_Tab_B$Predictor %in% "MISCL × METRIC",]["F"]`, *p* `r Aov_Tab_B[Aov_Tab_B$Predictor %in% "MISCL × METRIC",]["Pr(>F)"]`, $\eta_{g}^{2}$ = `r Aov_Tab_B[Aov_Tab_B$Predictor %in% "MISCL × METRIC",]["ges"]`, $\hat{\epsilon}$ = `r MOTE::apa(summary(ModelB$Anova)$pval.adjustments[1, "GG eps"],2,T)`). This means that the impact of partial (50\%) and complete (100\%) misclassification of the minority class varied significantly between metrics. Figure 3 reveals that while for each metric the average scores were lower for scenarios with complete misclassification than for partial misclassification, the magnitude of this difference varied significantly between metrics. The largest difference between these misclassification types was observed in F1~m~ scores ($\Delta$ = `r deltaMISCLF1m`), whereas the smallest difference was observed for nMCC ($\Delta$ = `r deltaMISCLMCC`). It follows that minority class misclassifications were most evident in F1~m~  scores and least evident in nMCC scores. It can therefore be concluded that F1~m~ was the most effective at signaling poor classification of the minority class, whereas nMCC was the least effective. \
+
+```{r B: Plot preparation, message = F, echo=F}
+# Plotdata raw
+plotdata <- dataB %>%
+  group_by(IR, MISCL, nMIN, METRIC) %>%
+  dplyr::summarise(y = mean(y))
+
+# Adjust factorlevels names & order
+## IR
+levels(plotdata$IR) <- c("1:1.2", "1:3", "1:30", "1:300")
+## METRIC 
+plotdata$METRIC <- factor( plotdata$METRIC, 
+                           labels = c('Accuracy' = 'Accuracy',
+                                      'F1m' = parse(text = latex2exp::TeX('$F1_{m}$')),
+                                      'MCC' = 'nMCC',
+                                      'MCC.cb' = parse(text = latex2exp::TeX('$nMCC_{cb}$'))))
+## MISCL
+plotdata$MISCL <- relevel(plotdata$MISCL, ref = "Min50") # Change order 
+```
+
+```{r B: Plot 1b, fig.cap= "Study B: Mean Value of Metrics for Each Misclassification Type, Demonstrating Partial (50%) and Complete (100%) Misclassification of a Minority Class as a Majority Class", echo=F}
+
+# Plot 1
+ggB <- ggplot2::ggplot(plotdata, aes( y = y, x = MISCL, group = 1, col = IR, shape = nMIN)) +
+geom_point(size = 3) +
+  scale_shape_manual(name = "Number of minority classes (nMIN)", values = c(3, 4, 5)) +
+  guides(shape = guide_legend(order = 3, override.aes = list(col = "black", shape = c(3, 4, 5), size = 3))) +
+  scale_color_manual(name = "Imbalance ratio (IR)", values =  c("#00BA38", "#FFD700", "#f99646", "#c21604"), guide = guide_legend(order = 2, override.aes = list(size = 5, shape = 15))) +
+  xlab("Misclassification types (MISCL)") +
+  ylab("Mean evaluation score") +
+  scale_x_discrete(labels = c("Minority class \n 50%", "Minority class \n 100%")) +
+  stat_summary(fun = "mean", geom = "line", col = "black", aes(alpha = "METRIC")) +
+  stat_summary(fun = "mean", geom = "point", col = "black", aes(alpha = "METRIC")) +
+  scale_alpha_manual(name = "Mean value for",
+                     values = c(1),
+                     breaks = c("METRIC"),
+                     guide = guide_legend(order = 1, override.aes = list(linetype = c(1),
+                                                              shape = c(19),
+                                                              color = "black"))) +  
+  theme(legend.key = element_rect(fill = NA)) +
+  facet_wrap(~ METRIC, labeller = label_parsed) +
+  thm # Does not work in console, only when compiled
+
+# Print final plot
+ggB
+```
+
+The last interaction effect with a moderate effect size involved METRIC and IR (*F*(`r Aov_Tab_B[Aov_Tab_B$Predictor %in% "IR × METRIC",]["num Df"]`, `r Aov_Tab_B[Aov_Tab_B$Predictor %in% "IR × METRIC",]["den Df"]`) = `r Aov_Tab_B[Aov_Tab_B$Predictor %in% "IR × METRIC",]["F"]`, *p* `r Aov_Tab_B[Aov_Tab_B$Predictor %in% "IR × METRIC",]["Pr(>F)"]`, $\eta_{g}^{2}$ = `r Aov_Tab_B[Aov_Tab_B$Predictor %in% "IR × METRIC",]["ges"]`, $\hat{\epsilon}$ = `r MOTE::apa(summary(ModelB$Anova)$pval.adjustments[1, "GG eps"],2,T)`). This effect is visualized in Figure 4, which also includes mean values for each level of MISCL and nMIN, for a more comprehensive overview of the data. Figure 4 reveals that nMCC~cb~ was insensitive to imbalance, while the other metrics had higher mean values in scenarios with more severe class imbalance. This suggests a positive relationship between class imbalance and scores of Accuracy, F1~m~, and nMCC, meaning that it was less apparent from their scores that the minority class was largely misclassified in scenarios with more class imbalance. It can also be observed that the positive trend appeared to gradually level off at severe imbalance (IR = 1:30) and approached saturation when imbalance was extreme \mbox{(IR = 1:300).} Thus, the effect of class imbalance stabilized at severe imbalance scenarios. Accuracy was most affected by imbalance, as it varied the most between levels of imbalance (*M* = `r BMSDIR[BMSDIR$METRIC %in% "Accuracy",]$y[,"mean"]`, \mbox{\textit{SD} = `r BMSDIR[BMSDIR$METRIC %in% "Accuracy",]$y[,"sd"]`).} \
+
+```{r B: Plot 2, fig.cap = "Study B: Mean Value of Metrics for Various Imbalance Ratios", echo = F}
+
+# Plot 2
+ggB2 <- ggplot2::ggplot(plotdata, aes(y = y, x = IR, group = 1, shape = nMIN, col = MISCL)) +
+  scale_shape_manual(name = "Number of minority classes (nMIN)", values = c(3, 4, 5), guide = guide_legend(override.aes = list(size = 3))) +
+  scale_color_manual(name = "Misclassification type (MISCL)" , values =  c("red3", "orange"), label = c("Minority class 50%", "Minority class 100%"), guide = guide_legend(order = 2, override.aes = list(size = 5, shape = 15))) +
+  geom_point(size=3) +
+  xlab("Imbalance ratio (IR)") +
+  ylab("Mean evaluation score") +
+  stat_summary(fun = "mean", geom = "line", col = "black", aes(alpha = "METRIC")) +
+  stat_summary(fun = "mean", geom = "point", col = "black", aes(alpha = "METRIC")) +
+  scale_alpha_manual(name = "Mean value for",
+                     values = c(1),
+                     breaks = c("METRIC"),
+                     guide = guide_legend(order = 1, override.aes = list(linetype = c(1),
+                                                              shape = c(19),
+                                                              color = "black"))) +  
+  theme(legend.key = element_rect(fill = NA)) +
+  facet_wrap(~ METRIC, labeller = label_parsed) + 
+  thm 
+
+# Print final plot
+ggB2 
+```
+
+\newpage
+Although the two-way interaction of METRIC and nMIN ($\eta_{g}^{2}$ = `r Aov_Tab_B[Aov_Tab_B$Predictor %in% "nMIN × METRIC",]["ges"]`), and the three-way interaction effect involving METRIC, IR, and MISCL ($\eta_{g}^{2}$ = `r Aov_Tab_B[Aov_Tab_B$Predictor %in% "MISCL × IR × METRIC",]["ges"]`) only reached a small to moderate $\eta_{g}^{2}$ effect size, it is important to describe them because these effects revealed valuable insights into the (in)ability of Accuracy and nMCC to reflect a largely misclassified minority class in their scores. The mean scores of Accuracy, nMCC, and F1~m~ all increased with more imbalance, but this increase was unequal and larger in scenarios with complete misclassification compared to partial misclassification only for Accuracy and nMCC. As illustrated in Figure 3 and Figure 4, this led to difficulties in discriminating between complete and partial misclassification from scores provided by Accuracy and nMCC. Moreover, Accuracy scores for both misclassification types approached convergence in severe imbalance scenarios (IR $\ge$ 30) and a similar pattern was observed for nMCC (nMIN $\neq$ 3). The examination of the absolute evaluations scores revealed that Accuracy and nMCC were potentially misleading in these scenarios. Even with complete misclassification of the minority class, Accuracy scored on average `r MOTE::apa(mean(subset(subset(subset(dataB, MISCL == "Min100"), IR %in% c("1:30", "1:300")), METRIC == "Accuracy")$y),2, F)` (*SD* = `r MOTE::apa(sd(subset(subset(subset(dataB, MISCL == "Min100"), IR %in% c("1:30", "1:300")), METRIC == "Accuracy")$y),3, F)`) and nMCC scored `r MOTE::apa(mean(subset(subset(subset(dataB, MISCL == "Min100"), IR %in% c("1:30", "1:300")), METRIC == "MCC")$y),2, F)` (*SD* = `r MOTE::apa(sd(subset(subset(subset(dataB, MISCL == "Min100"), IR %in% c("1:30", "1:300")), METRIC == "MCC")$y),3, F)`) in scenarios with severe imbalance. Accuracy and nMCC seemed hardly affected by misclassifications in the minority class, as indicated by their high scores that suggest the classification was almost perfect, while in fact a minority class was completely misclassified. An important nuance for nMCC, as revealed by both figures and supported by the significant two-way interaction of METRIC and nMIN, is that its scores were not misleadingly high in scenarios with three minority classes. Although Accuracy followed the same trend as nMCC, the number of minority classes affected Accuracy scores minimally and more minority classes did not make Accuracy scores less misleading. In contrast to Accuracy and nMCC, F1~m~ (*M* = `r MOTE::apa(mean(subset(subset(subset(dataB, MISCL == "Min100"), IR %in% c("1:30", "1:300")), METRIC == "F1m")$y),2, F)`, *SD* = `r MOTE::apa(sd(subset(subset(subset(dataB, MISCL == "Min100"), IR %in% c("1:30", "1:300")), METRIC == "F1m")$y),3, F)`) and nMCC~cb~ (*M* = `r MOTE::apa(mean(subset(subset(subset(dataB, MISCL == "Min100"), IR %in% c("1:30", "1:300")), METRIC == "MCC.cb")$y),2, F)`, *SD* $<$ .001) were unaffected by the number of minority classes, had clearly distinct evaluation scores for the two misclassification types in every scenario and consistently signaled that the classification performance was not optimal. Thus, while the differences between metrics were not substantial enough for the interaction effects with METRIC and nMIN, and with METRIC, MISCL, and IR to reach moderate effect sizes, the practical consequences for Accuracy and nMCC were substantial, showing their (un)suitability in different scenarios. 
+
+In summary, simulation study B aimed to investigate how sensitive metrics were to misclassifications in minority classes and it demonstrated that the ability to reflect the prediction accuracy of minority classes varied between metrics and scenarios. The most significant factors interacting with the metrics in this study were the type of misclassification and the imbalance ratio. While Accuracy and nMCC scores varied the most between scenarios, the largest average difference between partial (50\%) or complete (100\%) misclassification was observed for F1~m~. This suggests that F1~m~ was most sensitive to minority misclassifications and best able to signal inadequate classification of the minority class, as minority misclassifications were the most apparent in its scores. Accuracy varied the most between levels of imbalance followed by nMCC, and F1~m~, all showing a positive trend in relation to imbalance that reached a plateau when imbalance was extreme. As a final but crucial point: F1~m~ and nMCC~cb~ consistently signaled with greater reduction in evaluations scores that classification was not perfect, whereas for Accuracy and nMCC this was not always as evident. Thus, F1~m~ and nMCC~cb~ were more effective than Accuracy and nMCC in pointing out misclassifications in minority classes. The subsequent study investigated metrics' suitability in scenarios with majority class misclassifications. 

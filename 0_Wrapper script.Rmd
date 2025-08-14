@@ -1,0 +1,193 @@
+---
+author: Suzanne Van Gestel
+affiliation:  Student at the Methodology and Statistics Unit, Leiden University
+title: "Appropriate evaluation metrics for multiclass imbalanced classification tasks"
+output:
+  pdf_document:
+    keep_md: yes
+    latex_engine: xelatex
+    keep_tex: yes
+    fig_caption: yes
+    md_extensions: +smart
+    number_sections: yes
+geometry: margin=1in
+fontsize: 11pt
+spacing: single
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+header-includes:
+  - \usepackage[nottoc, numbib]{tocbibind}
+  - \usepackage{sectsty}
+  - \usepackage{soul}
+  - \usepackage{setspace} \doublespacing
+  - \setlength\parindent{36pt}\setlength{\parskip}{0.0pt plus 1.0pt}
+  - \usepackage{indentfirst}
+  - \usepackage[bottom]{footmisc}
+  - \usepackage{graphicx}
+  - \usepackage{caption}
+  - \captionsetup[table]{textfont={it, doublespacing}, labelfont={bf}, singlelinecheck=false, labelsep=newline}
+  - \captionsetup[figure]{textfont={it, doublespacing}, labelfont={bf},  singlelinecheck=false, labelsep=newline} # alternative for doublespacing is stretch = 2
+  - \usepackage{floatrow}
+  - \floatsetup[figure]{capposition=top}
+  - \floatsetup[table]{capposition=top}
+  - \floatplacement{figure}{H}
+  - \floatplacement{table}{H}
+  - \captionsetup{footfont=small}
+  - \usepackage{xcolor}
+  - \newcommand{\lightgray}[1]{\textcolor{lightgray}{#1}}
+  - \newcommand{\gray}[1]{\textcolor{gray}{#1}}
+  - \usepackage{pdfpages} # Front page
+  - \pagenumbering{gobble}
+  - \AtBeginDocument{\let\maketitle\relax} # Suppress Title
+bibliography: MasterThesis.biblatex
+csl: apa7.csl
+---
+
+<!-- # Front page Leiden University -->
+\includepdf[pages = 1, offset = -1cm 0]{FrontPage.pdf} <!-- # Offset for right margins -->
+
+```{r, echo = FALSE}
+# Adapted from: https://stackoverflow.com/questions/67825951/how-to-customize-figure-latex-with-knitr-rmarkdown (@Henrik_ibsen, retrieved at: 14-08-2025) 
+
+hook_plot_tex_footer <- function(x, options) {
+  x_out <- knitr:::hook_plot_tex(x, options)
+  if (!is.null(options$fig.footer)) {
+  inter <- sprintf("\\floatfoot{s}\n\\end{figure}", options$fig.footer[1])
+  x_out <- gsub(x=x_out, pattern="\n\\end{figure}", replacement=inter, fixed=TRUE)
+ }
+ x_out
+}
+knitr::knit_hooks$set(plot=hook_plot_tex_footer)
+
+```
+
+```{r check for packages, echo = F, message = F, include=F}
+required_packages <- c("afex", 
+                       "cachem",
+                       "effectsize", 
+                       "formatR", 
+                       "ggplot2",
+                       "ggtext", 
+                       "latex2exp",
+                       "ggnewscale",
+                       "tibble", 
+                       "grid", 
+                       "rmarkdown", 
+                       "knitr", 
+                       "kableExtra", 
+                       "tidyverse",
+                       "png",
+                       "showtext", 
+                       "extrafont", 
+                       "sysfonts", 
+                       "MOTE", 
+                       "stringr",
+                       "tidyr",
+                       "dplyr"
+                       ) 
+
+for (package in required_packages) {
+  print(paste0("checking for install of ", package))
+  if (!requireNamespace(package)) install.packages(package, repos = "http://cran.rstudio.com")
+}
+
+extrafont::font_install('fontcm')
+```
+
+```{r font set up, echo = F, warning = F, message = F}
+# Download CM Roman font and set up
+# Adapted from: https://stackoverflow.com/questions/22043586/embedding-font-in-graphic-with-semi-transparency-pdf (@yixuan, retrieved at 14-08-2025
+
+old = setwd(tempdir()) 
+download.file("http://downloads.sourceforge.net/project/cm-unicode/cm-unicode/0.7.0/cm-unicode-0.7.0-ttf.tar.xz", "cm-unicode-0.7.0-ttf.tar.xz")
+untar("cm-unicode-0.7.0-ttf.tar.xz", compressed = "xz") 
+setwd("cm-unicode-0.7.0") 
+sysfonts::font.add("CM Roman", regular = "cmunrm.ttf", italic = "cmunti.ttf", symbol = "cmunti.ttf")
+setwd(old) 
+showtext::showtext_auto()
+```
+
+<!-- # Styling -->
+\allsectionsfont{\centering}
+\subsectionfont{\raggedright}
+\subsubsectionfont{\raggedright}
+\hyphenpenalty=10000
+\interfootnotelinepenalty=10000 <!-- Full footnote same page -->
+\pagenumbering{roman}
+
+<!-- # Abstract -->
+```{r Abs, child = './1_Abstract/Abstract.Rmd'}
+```
+
+
+<!-- # Acknowledgements -->
+```{r Abs, child = './2_Acknowledgments/Acknowledgments.Rmd'}
+```
+
+
+<!-- # Table of Contents -->
+\renewcommand{\contentsname}{Table of Contents} <!-- # Rename -->
+\setcounter{tocdepth}{4}
+\tableofcontents
+
+\newpage 
+\pagenumbering{arabic}
+
+<!-- Introduction -->
+```{r Intro, child = './3_Introduction/Introduction.Rmd'}
+```
+
+
+<!-- # Methodology -->
+```{r Method, child = './4_Methodology/Methodology Text/Method.Rmd'}
+```
+
+
+<!-- Data preparation and simulation -->
+```{r sim A, child = './4_Methodology/Preparation and Simulation Studies/A_DataPreparation_and_Simulation.Rmd'}
+```
+
+```{r sim B, child = './4_Methodology/Preparation and Simulation Studies/B_DataPreparation_and_Simulation.Rmd'}
+```
+
+```{r sim C, child = './4_Methodology/Preparation and Simulation Studies/C_DataPreparation_and_Simulation.Rmd'}
+```
+
+```{r sim D, child = './4_Methodology/Preparation and Simulation Studies/D_DataPreparation_and_Simulation.Rmd'}
+```
+
+
+<!-- Results -->
+\newpage
+```{r General results, child = './5_Results/Results.Rmd'}
+```
+
+```{r A results, child = './5_Results/Results A.Rmd'}
+```
+
+```{r B results, child = './5_Results/Results B.Rmd'}
+```
+
+```{r C results, child = './5_Results/Results C.Rmd'}
+```
+
+```{r D results, child = './5_Results/Results D.Rmd'}
+```
+
+
+<!-- # Discussion -->
+\newpage
+```{r Disc, child = './6_Discussion/Discussion.Rmd'}
+```
+
+
+<!-- # References -->
+\newpage
+```{r refs, child = './7_References/References.Rmd'}
+```
+
+
+<!-- # Appendices -->
+\newpage
+```{r App, child = './8_Appendices/Appendix.Rmd'}
+```
+
